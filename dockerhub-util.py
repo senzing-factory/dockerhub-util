@@ -118,6 +118,10 @@ dockerhub_repositories_for_latest = {
     'g2loader': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_G2LOADER'
     },
+    'ibm-db2': {
+        'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_IBM_DB2',
+        'version': 'latest'
+    },
     'init-container': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_INIT_CONTAINER'
     },
