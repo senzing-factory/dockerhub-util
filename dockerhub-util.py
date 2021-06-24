@@ -144,6 +144,10 @@ dockerhub_repositories_for_latest = {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_MYSQL',
         'version': '5.7'
     },
+    'mysql-client': {
+        'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_AREY_MYSQL_CLIENT',
+        'version': 'latest'
+    },
     'mysql-init': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_MYSQL',
         'version': 'latest'
