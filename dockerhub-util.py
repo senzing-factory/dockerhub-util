@@ -92,6 +92,10 @@ dockerhub_repositories_for_latest = {
     'aptdownloader': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_APT_DOWNLOADER'
     },
+    'confluentinc-cp-kafka': {
+        'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_CONFLUENTINC_CP_KAFKA',
+        'version': '4.0.1-1'
+    },
     'configurator': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_CONFIGURATOR'
     },
