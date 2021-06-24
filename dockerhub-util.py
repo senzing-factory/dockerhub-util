@@ -18,7 +18,7 @@ from datetime import date
 __all__ = []
 __version__ = "1.0.1"  # See https://www.python.org/dev/peps/pep-0396/
 __date__ = '2021-02-22'
-__updated__ = '2021-06-23'
+__updated__ = '2021-06-24'
 
 SENZING_PRODUCT_ID = "5018"  # See https://github.com/Senzing/knowledge-base/blob/master/lists/senzing-product-ids.md
 log_format = '%(asctime)s %(message)s'
@@ -91,6 +91,9 @@ dockerhub_repositories_for_latest = {
     },
     'aptdownloader': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_APT_DOWNLOADER'
+    },
+    'configurator': {
+        'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_CONFIGURATOR'
     },
     'db2': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_DB2',
