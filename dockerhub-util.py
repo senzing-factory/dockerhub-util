@@ -80,7 +80,7 @@ keys_to_redact = [
     "dockerhub_password",
 ]
 
-# Docker registries for knowledge-base/lists/versions-latest.sh
+# Docker registries for knowledge-base/lists/docker-versions-latest.sh
 
 dockerhub_repositories_for_latest = {
     'adminer': {
