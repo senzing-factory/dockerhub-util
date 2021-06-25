@@ -175,6 +175,11 @@ dockerhub_repositories_for_latest = {
         'image': 'confluentinc/cp-kafka',
         'version': '6.1.2'
     },
+    'x-ibmcom-db2': {
+        'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_IBMCOM_DB2',
+        'image': 'ibmcom/db2',
+        'version': '11.5.5.1'
+    },
     'x-kafdrop': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_OBSIDIANDYNAMICS_KAFDROP',
         'image': 'obsidiandynamics/kafdrop',
