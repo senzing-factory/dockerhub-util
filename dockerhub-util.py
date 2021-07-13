@@ -193,7 +193,7 @@ dockerhub_repositories_for_latest = {
     'x-kafka': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_BITNAMI_KAFKA',
         'image': 'bitnami/kafka',
-        'version': '2.8.0'
+        'version': '2.8.0-debian-10-r55'
     },
     'x-mssql': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_MSSQL_SERVER',
@@ -208,9 +208,14 @@ dockerhub_repositories_for_latest = {
         'version': 'latest'
     },
     'x-mysql': {
+        'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_BITNAMI_MYSQL',
+        'image': 'bitnami/mysql',
+        'version': '5.7.34-debian-10-r70'
+    },
+    'x-mysql-deprecated': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_MYSQL',
         'image': 'bitnami/mysql',
-        'version': '5.7'
+        'version': '5.7.34-debian-10-r70'
     },
     'x-mysql-client': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_AREY_MYSQL_CLIENT',
@@ -218,9 +223,14 @@ dockerhub_repositories_for_latest = {
         'version': 'latest'
     },
     'x-phpmyadmin': {
+        'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_BITNAMI_PHPMYADMIN',
+        'image': 'bitnami/phpmyadmin',
+        'version': '5.1.1-debian-10-r29'
+    },
+    'x-phpmyadmin-deprecated': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_PHPMYADMIN',
         'image': 'bitnami/phpmyadmin',
-        'version': '5.1.1'
+        'version': '5.1.1-debian-10-r29'
     },
     'x-portainer': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_PORTAINER',
@@ -228,14 +238,24 @@ dockerhub_repositories_for_latest = {
         'version': '1.24.2'
     },
     'x-postgres': {
+        'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_BITNAMI_POSTGRESQL',
+        'image': 'bitnami/postgresql',
+        'version': '11.12.0-debian-10-r50'
+    },
+    'x-postgres-deprecated': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_POSTGRES',
         'image': 'bitnami/postgresql',
-        'version': '11.12.0'
+        'version': '11.12.0-debian-10-r50'
     },
     'x-rabbitmq': {
+        'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_BITNAMI_RABBITMQ',
+        'image': 'bitnami/rabbitmq',
+        'version': '3.8.19-debian-10-r6'
+    },
+    'x-rabbitmq-deprecated': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_RABBITMQ',
         'image': 'bitnami/rabbitmq',
-        'version': '3.8.19'
+        'version': '3.8.19-debian-10-r6'
     },
     'x-sqlite-web': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_SQLITE_WEB',
@@ -250,7 +270,7 @@ dockerhub_repositories_for_latest = {
     'x-zookeeper': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_BITNAMI_ZOOKEEPER',
         'image': 'bitnami/zookeeper',
-        'version': '3.6.3'
+        'version': '3.7.0-debian-10-r87'
     }
 }
 # -----------------------------------------------------------------------------
