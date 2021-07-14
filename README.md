@@ -286,3 +286,5 @@ Configuration values specified by environment variable or command line parameter
 1. See [docs/errors.md](docs/errors.md).
 
 ## References
+
+1. [Bitnami's Best Practices for Securing and Hardening Container Images](https://docs.bitnami.com/tutorials/bitnami-best-practices-hardening-containers)
