@@ -14,11 +14,12 @@ import signal
 import sys
 import time
 from datetime import date
+from packaging.version import Version
 
 __all__ = []
 __version__ = "1.0.1"  # See https://www.python.org/dev/peps/pep-0396/
 __date__ = '2021-02-22'
-__updated__ = '2021-07-13'
+__updated__ = '2021-07-19'
 
 SENZING_PRODUCT_ID = "5018"  # See https://github.com/Senzing/knowledge-base/blob/master/lists/senzing-product-ids.md
 log_format = '%(asctime)s %(message)s'
@@ -657,6 +658,16 @@ def exit_silently():
 # -----------------------------------------------------------------------------
 
 
+def max_version(versions):
+
+    result = Version('0.0.0')
+    for version in versions:
+        version_parsed = Version(version)
+        if version_parsed > result:
+            result = version_parsed
+    return result
+
+
 def find_latest_version(version_list):
     # TODO: Perhaps improve with https://pypi.org/project/semver/
 
@@ -668,7 +679,7 @@ def find_latest_version(version_list):
     for redact in redact_list:
         if redact in version_list:
             version_list.remove(redact)
-    return max(version_list)
+    return max_version(version_list)
 
 
 def get_latest_versions(config, dockerhub_repositories):
