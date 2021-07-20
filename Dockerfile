@@ -15,8 +15,9 @@ USER root
 
 # Install packages via PIP.
 
-RUN pip3 install \
-      requests
+COPY requirements.txt ./
+RUN pip3 install --upgrade pip \
+ && pip3 install -r requirements.txt
 
 # Copy files from repository.
 
