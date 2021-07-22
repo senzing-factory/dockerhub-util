@@ -1,11 +1,11 @@
-ARG BASE_IMAGE=senzing/senzing-base:1.5.5
+ARG BASE_IMAGE=debian:10.10
 FROM ${BASE_IMAGE}
 
-ENV REFRESHED_AT=2021-02-22
+ENV REFRESHED_AT=2021-07-22
 
 LABEL Name="senzing/dockterhub-util" \
       Maintainer="support@senzing.com" \
-      Version="1.0.1"
+      Version="1.0.2"
 
 HEALTHCHECK CMD ["/app/healthcheck.sh"]
 
