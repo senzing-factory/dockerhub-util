@@ -17,9 +17,9 @@ from datetime import date
 from packaging.version import Version
 
 __all__ = []
-__version__ = "1.0.2"  # See https://www.python.org/dev/peps/pep-0396/
+__version__ = "1.0.3"  # See https://www.python.org/dev/peps/pep-0396/
 __date__ = '2021-02-22'
-__updated__ = '2021-07-22'
+__updated__ = '2021-08-09'
 
 SENZING_PRODUCT_ID = "5018"  # See https://github.com/Senzing/knowledge-base/blob/master/lists/senzing-product-ids.md
 log_format = '%(asctime)s %(message)s'
@@ -132,6 +132,10 @@ dockerhub_repositories_for_latest = {
     'redoer': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_REDOER',
     },
+    'redoer-with-data': {
+        'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_REDOER_WITH_DATA',
+        'repository': 'redoer',
+    },
     'resolver': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_RESOLVER',
     },
@@ -152,6 +156,10 @@ dockerhub_repositories_for_latest = {
     },
     'stream-loader': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_STREAM_LOADER',
+    },
+    'stream-loader-with-data': {
+        'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_STREAM_LOADER_WITH_DATA',
+        'repository': 'stream-loader',
     },
     'stream-logger': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_STREAM_LOGGER',
@@ -692,7 +700,8 @@ def get_latest_versions(config, dockerhub_repositories):
         organization = value.get('organization', organization_default)
         latest_version = value.get('version')
         if not latest_version:
-            response = dockerhub_client.get_repository_tags(organization, key)
+            repository_name = value.get('repository', key)
+            response = dockerhub_client.get_repository_tags(organization, repository_name)
             version_tags = [x.get('name') for x in response]
             latest_version = find_latest_version(version_tags)
         result.append("export {0}={1}".format(value.get('environment_variable'), latest_version))
