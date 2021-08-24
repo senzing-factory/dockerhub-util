@@ -19,7 +19,7 @@ from packaging.version import Version
 __all__ = []
 __version__ = "1.0.3"  # See https://www.python.org/dev/peps/pep-0396/
 __date__ = '2021-02-22'
-__updated__ = '2021-08-09'
+__updated__ = '2021-08-23'
 
 SENZING_PRODUCT_ID = "5018"  # See https://github.com/Senzing/knowledge-base/blob/master/lists/senzing-product-ids.md
 log_format = '%(asctime)s %(message)s'
@@ -150,6 +150,9 @@ dockerhub_repositories_for_latest = {
     },
     'senzing-debug': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_SENZING_DEBUG',
+    },
+    'senzing-poc-server': {
+        'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_SENZING_POC_SERVER',
     },
     'sshd': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_SSHD',
