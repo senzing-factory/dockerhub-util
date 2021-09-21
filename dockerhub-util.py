@@ -134,7 +134,6 @@ dockerhub_repositories_for_latest = {
     },
     'redoer-with-data': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_REDOER_WITH_DATA',
-        'repository': 'redoer',
     },
     'resolver': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_RESOLVER',
@@ -162,7 +161,6 @@ dockerhub_repositories_for_latest = {
     },
     'stream-loader-with-data': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_STREAM_LOADER_WITH_DATA',
-        'repository': 'stream-loader',
     },
     'stream-logger': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_STREAM_LOGGER',
