@@ -196,7 +196,7 @@ dockerhub_repositories_for_latest = {
     'x-ibmcom-db2': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_IBMCOM_DB2',
         'image': 'ibmcom/db2',
-        'version': '11.5.6.0'
+        'version': '11.5.6.0a'
     },
     'x-kafdrop': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_OBSIDIANDYNAMICS_KAFDROP',
