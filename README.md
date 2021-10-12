@@ -251,6 +251,15 @@ The following examples require initialization described in
         > ~/senzing.git/knowledge-base/lists/docker-versions-latest.sh
     ```
 
+1. Create `knowledge-base/lists/docker-image-names.json`
+   Example:
+
+    ```console
+    ~/senzing.git/dockerhub-util/dockerhub-util.py print-image-names \
+        > ~/senzing.git/knowledge-base/lists/docker-image-names.json
+    ```
+
+
 ### Examples of Docker
 
 The following examples require initialization described in

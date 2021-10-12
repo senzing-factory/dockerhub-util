@@ -232,7 +232,7 @@ dockerhub_repositories_for_latest = {
     },
     'x-mysql-client': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_AREY_MYSQL_CLIENT',
-        'image:': 'arey/mysql-client',
+        'image': 'arey/mysql-client',
         'version': 'latest'
     },
     'x-phpmyadmin': {
@@ -263,7 +263,7 @@ dockerhub_repositories_for_latest = {
     'x-rabbitmq': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_BITNAMI_RABBITMQ',
         'image': 'bitnami/rabbitmq',
-        'version': '3.8.19-debian-10-r6'
+        'version': '3.9.5-debian-10-r12'
     },
     'x-rabbitmq-deprecated': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_RABBITMQ',
@@ -295,6 +295,11 @@ def get_parser():
     ''' Parse commandline arguments. '''
 
     subcommands = {
+        'print-image-names': {
+            "help": 'Print image names used in Senzing demonstrations.',
+            "argument_aspects": ["common"],
+            "arguments": {},
+        },
         'print-latest-versions': {
             "help": 'Print latest versions of Docker images.',
             "argument_aspects": ["common"],
@@ -713,6 +718,29 @@ def get_latest_versions(config, dockerhub_repositories):
     result.sort()
     return result
 
+def get_image_names(config, dockerhub_repositories):
+
+    result = {}
+    for key, value in dockerhub_repositories.items():
+
+        # Skip deprecated keys.
+
+        if "deprecated" in key:
+            continue
+
+        # Add to result.
+
+        if "image" in value:
+            image_name = value.get("image")
+        else:
+            image_name = "senzing/{0}".format(key)
+
+        result[image_name] = {
+            "environment_variable": value.get("environment_variable")
+        }
+
+    return result
+
 # -----------------------------------------------------------------------------
 # do_* functions
 #   Common function signature: do_XXX(args)
@@ -734,6 +762,28 @@ def do_docker_acceptance_test(args):
 
     logging.info(exit_template(config))
 
+
+def do_print_image_names(args):
+    ''' Do a task. '''
+
+    # Get context from CLI, environment variables, and ini files.
+
+    config = get_configuration(args)
+
+    # Prolog.
+
+    logging.info(entry_template(config))
+
+    # Do work.
+
+    response = get_image_names(config, dockerhub_repositories_for_latest)
+
+    response_json = json.dumps(response, sort_keys=True, indent=4)
+    print(response_json)
+
+    # Epilog.
+
+    logging.info(exit_template(config))
 
 def do_print_latest_versions(args):
     ''' Do a task. '''
