@@ -259,7 +259,6 @@ The following examples require initialization described in
         > ~/senzing.git/knowledge-base/lists/docker-image-names.json
     ```
 
-
 ### Examples of Docker
 
 The following examples require initialization described in
