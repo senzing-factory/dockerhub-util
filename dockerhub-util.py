@@ -19,7 +19,7 @@ from packaging.version import Version
 __all__ = []
 __version__ = "1.0.3"  # See https://www.python.org/dev/peps/pep-0396/
 __date__ = '2021-02-22'
-__updated__ = '2021-10-05'
+__updated__ = '2021-10-12'
 
 SENZING_PRODUCT_ID = "5018"  # See https://github.com/Senzing/knowledge-base/blob/master/lists/senzing-product-ids.md
 log_format = '%(asctime)s %(message)s'
@@ -186,12 +186,12 @@ dockerhub_repositories_for_latest = {
     'x-busybox': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_BUSYBOX',
         'image': 'busybox',
-        'version': '1.33.1'
+        'version': '1.34.0'
     },
     'x-confluentinc-cp-kafka': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_CONFLUENTINC_CP_KAFKA',
         'image': 'confluentinc/cp-kafka',
-        'version': '6.1.2'
+        'version': '6.2.1'
     },
     'x-ibmcom-db2': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_IBMCOM_DB2',
@@ -206,7 +206,7 @@ dockerhub_repositories_for_latest = {
     'x-kafka': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_BITNAMI_KAFKA',
         'image': 'bitnami/kafka',
-        'version': '2.8.0-debian-10-r55'
+        'version': '2.8.1-debian-10-r16'
     },
     'x-mssql': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_MSSQL_SERVER',
@@ -223,12 +223,12 @@ dockerhub_repositories_for_latest = {
     'x-mysql': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_BITNAMI_MYSQL',
         'image': 'bitnami/mysql',
-        'version': '5.7.34-debian-10-r70'
+        'version': '8.0.26-debian-10-r75'
     },
     'x-mysql-deprecated': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_MYSQL',
         'image': 'bitnami/mysql',
-        'version': '5.7.34-debian-10-r70'
+        'version': '8.0.26-debian-10-r75'
     },
     'x-mysql-client': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_AREY_MYSQL_CLIENT',
@@ -238,12 +238,12 @@ dockerhub_repositories_for_latest = {
     'x-phpmyadmin': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_BITNAMI_PHPMYADMIN',
         'image': 'bitnami/phpmyadmin',
-        'version': '5.1.1-debian-10-r29'
+        'version': '5.1.1-debian-10-r99'
     },
     'x-phpmyadmin-deprecated': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_PHPMYADMIN',
         'image': 'bitnami/phpmyadmin',
-        'version': '5.1.1-debian-10-r29'
+        'version': '5.1.1-debian-10-r99'
     },
     'x-portainer': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_PORTAINER',
@@ -253,12 +253,12 @@ dockerhub_repositories_for_latest = {
     'x-postgres': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_BITNAMI_POSTGRESQL',
         'image': 'bitnami/postgresql',
-        'version': '11.12.0-debian-10-r50'
+        'version': '11.13.0-debian-10-r58'
     },
     'x-postgres-deprecated': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_POSTGRES',
         'image': 'bitnami/postgresql',
-        'version': '11.12.0-debian-10-r50'
+        'version': '11.13.0-debian-10-r58'
     },
     'x-rabbitmq': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_BITNAMI_RABBITMQ',
@@ -268,7 +268,7 @@ dockerhub_repositories_for_latest = {
     'x-rabbitmq-deprecated': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_RABBITMQ',
         'image': 'bitnami/rabbitmq',
-        'version': '3.8.19-debian-10-r6'
+        'version': '3.9.5-debian-10-r12'
     },
     'x-sqlite-web': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_SQLITE_WEB',
@@ -278,12 +278,12 @@ dockerhub_repositories_for_latest = {
     'x-swagger-ui': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_SWAGGERAPI_SWAGGER_UI',
         'image': 'swaggerapi/swagger-ui',
-        'version': 'v3.51.0'
+        'version': 'v3.52.4'
     },
     'x-zookeeper': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_BITNAMI_ZOOKEEPER',
         'image': 'bitnami/zookeeper',
-        'version': '3.7.0-debian-10-r87'
+        'version': '3.7.0-debian-10-r119'
     }
 }
 # -----------------------------------------------------------------------------
