@@ -245,6 +245,11 @@ dockerhub_repositories_for_latest = {
         'image': 'bitnami/phpmyadmin',
         'version': '5.1.1-debian-10-r99'
     },
+    'x-phppgadmin': {
+        'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_BITNAMI_PHPPGADMIN',
+        'image': 'bitnami/phppgadmin',
+        'version': '7.13.0-debian-10-r314'
+    },
     'x-portainer': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_PORTAINER',
         'image': 'portainer/portainer',
