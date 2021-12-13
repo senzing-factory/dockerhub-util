@@ -19,7 +19,7 @@ from packaging.version import Version
 __all__ = []
 __version__ = "1.0.3"  # See https://www.python.org/dev/peps/pep-0396/
 __date__ = '2021-02-22'
-__updated__ = '2021-10-12'
+__updated__ = '2021-12-13'
 
 SENZING_PRODUCT_ID = "5018"  # See https://github.com/Senzing/knowledge-base/blob/master/lists/senzing-product-ids.md
 log_format = '%(asctime)s %(message)s'
@@ -409,6 +409,7 @@ message_dictionary = {
     "700": "senzing-" + SENZING_PRODUCT_ID + "{0:04d}E",
     "899": "{0}",
     "900": "senzing-" + SENZING_PRODUCT_ID + "{0:04d}D",
+    "901": "In repository '{0}', Non-semantic-version {1}",
     "998": "Debugging enabled.",
     "999": "{0}",
 }
@@ -717,11 +718,17 @@ def get_latest_versions(config, dockerhub_repositories):
             repository_name = value.get('repository', key)
             response = dockerhub_client.get_repository_tags(organization, repository_name)
             version_tags = [x.get('name') for x in response]
-            latest_version = find_latest_version(version_tags)
+            try:
+                latest_version = find_latest_version(version_tags)
+            except Exception as err:
+                logging.error(message_error(901, repository_name, err))
+                raise(err)
+
         result.append("export {0}={1}".format(value.get('environment_variable'), latest_version))
 
     result.sort()
     return result
+
 
 def get_image_names(config, dockerhub_repositories):
 
@@ -789,6 +796,7 @@ def do_print_image_names(args):
     # Epilog.
 
     logging.info(exit_template(config))
+
 
 def do_print_latest_versions(args):
     ''' Do a task. '''
