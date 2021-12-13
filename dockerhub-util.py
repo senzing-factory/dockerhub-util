@@ -141,6 +141,9 @@ dockerhub_repositories_for_latest = {
     'resolver': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_RESOLVER',
     },
+    'risk-score-calculator': {
+        'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_RISK_SCORE_CALCULATOR',
+    },
     'senzing-api-server': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_SENZING_API_SERVER',
     },
@@ -152,6 +155,9 @@ dockerhub_repositories_for_latest = {
     },
     'senzing-debug': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_SENZING_DEBUG',
+    },
+    'senzing-listener': {
+        'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_SENZING_LISTENER',
     },
     'senzing-poc-server': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_SENZING_POC_SERVER',
@@ -722,7 +728,7 @@ def get_latest_versions(config, dockerhub_repositories):
                 latest_version = find_latest_version(version_tags)
             except Exception as err:
                 logging.error(message_error(901, repository_name, err))
-                latest_version = "99.99.99"
+                raise(err)
 
         result.append("export {0}={1}".format(value.get('environment_variable'), latest_version))
 
