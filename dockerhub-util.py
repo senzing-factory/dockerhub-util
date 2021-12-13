@@ -722,7 +722,7 @@ def get_latest_versions(config, dockerhub_repositories):
                 latest_version = find_latest_version(version_tags)
             except Exception as err:
                 logging.error(message_error(901, repository_name, err))
-                raise(err)
+                latest_version = "99.99.99"
 
         result.append("export {0}={1}".format(value.get('environment_variable'), latest_version))
 
