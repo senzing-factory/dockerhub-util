@@ -19,7 +19,7 @@ from packaging.version import Version
 __all__ = []
 __version__ = "1.0.3"  # See https://www.python.org/dev/peps/pep-0396/
 __date__ = '2021-02-22'
-__updated__ = '2021-12-13'
+__updated__ = '2022-01-14'
 
 SENZING_PRODUCT_ID = "5018"  # See https://github.com/Senzing/knowledge-base/blob/master/lists/senzing-product-ids.md
 log_format = '%(asctime)s %(message)s'
@@ -199,6 +199,11 @@ dockerhub_repositories_for_latest = {
         'image': 'confluentinc/cp-kafka',
         'version': '6.2.1'
     },
+    'x-elasticsearch': {
+        'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_ELASTICSEARCH',
+        'image': 'elasticsearch',
+        'version': '7.16.3'
+    },
     'x-ibmcom-db2': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_IBMCOM_DB2',
         'image': 'ibmcom/db2',
@@ -213,6 +218,16 @@ dockerhub_repositories_for_latest = {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_BITNAMI_KAFKA',
         'image': 'bitnami/kafka',
         'version': '2.8.1-debian-10-r16'
+    },
+    'x-kibana': {
+        'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_KIBANA',
+        'image': 'kibana',
+        'version': '7.16.3'
+    },
+    'x-logstash': {
+        'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_LOGSTASH',
+        'image': 'logstash',
+        'version': '7.16.3'
     },
     'x-mssql': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_MSSQL_SERVER',
