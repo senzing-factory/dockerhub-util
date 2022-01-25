@@ -19,7 +19,7 @@ from packaging.version import Version
 __all__ = []
 __version__ = "1.0.3"  # See https://www.python.org/dev/peps/pep-0396/
 __date__ = '2021-02-22'
-__updated__ = '2022-01-19'
+__updated__ = '2022-01-24'
 
 SENZING_PRODUCT_ID = "5018"  # See https://github.com/Senzing/knowledge-base/blob/master/lists/senzing-product-ids.md
 log_format = '%(asctime)s %(message)s'
@@ -255,6 +255,11 @@ dockerhub_repositories_for_latest = {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_AREY_MYSQL_CLIENT',
         'image': 'arey/mysql-client',
         'version': 'latest'
+    },
+    'x-nginx': {
+        'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_BITNAMI_NGINX',
+        'image': 'bitnami/nginx',
+        'version': '1.21.5-debian-10-r26'
     },
     'x-phpmyadmin': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_BITNAMI_PHPMYADMIN',
