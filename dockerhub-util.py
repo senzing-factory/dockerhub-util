@@ -19,7 +19,7 @@ from packaging.version import Version
 __all__ = []
 __version__ = "1.0.3"  # See https://www.python.org/dev/peps/pep-0396/
 __date__ = '2021-02-22'
-__updated__ = '2022-01-25'
+__updated__ = '2022-02-01'
 
 SENZING_PRODUCT_ID = "5018"  # See https://github.com/Senzing/knowledge-base/blob/master/lists/senzing-product-ids.md
 log_format = '%(asctime)s %(message)s'
@@ -732,12 +732,17 @@ def find_latest_version(version_list):
 
     redact_list = [
         'latest',
-        'experimental'
+        'experimental',
+        'test'
     ]
 
     for redact in redact_list:
         if redact in version_list:
             version_list.remove(redact)
+            continue
+        for version in version_list:
+            if version.startswith(redact):
+                version_list.remove(version)
     return max_version(version_list)
 
 
@@ -758,7 +763,7 @@ def get_latest_versions(config, dockerhub_repositories):
                 latest_version = find_latest_version(version_tags)
             except Exception as err:
                 logging.error(message_error(901, repository_name, err))
-                raise(err)
+                continue
 
         result.append("export {0}={1}".format(value.get('environment_variable'), latest_version))
 
