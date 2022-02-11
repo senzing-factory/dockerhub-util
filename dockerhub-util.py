@@ -19,7 +19,7 @@ from packaging.version import Version
 __all__ = []
 __version__ = "1.0.3"  # See https://www.python.org/dev/peps/pep-0396/
 __date__ = '2021-02-22'
-__updated__ = '2022-02-01'
+__updated__ = '2022-02-11'
 
 SENZING_PRODUCT_ID = "5018"  # See https://github.com/Senzing/knowledge-base/blob/master/lists/senzing-product-ids.md
 log_format = '%(asctime)s %(message)s'
@@ -188,6 +188,11 @@ dockerhub_repositories_for_latest = {
     },
     'yumdownloader': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_YUM_DOWNLOADER',
+    },
+    'x-bitnami-shell': {
+        'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_BITNAMI_SHELL',
+        'image': 'bitnami/bitnami-shell',
+        'version': '10-debian-10-r335'
     },
     'x-busybox': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_BUSYBOX',
