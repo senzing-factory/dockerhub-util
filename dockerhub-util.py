@@ -271,6 +271,11 @@ dockerhub_repositories_for_latest = {
         'image': 'bitnami/nginx-ingress-controller',
         'version': '1.1.1-debian-10-r50'
     },
+    'x-pgadmin': {
+        'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_DPAGE_PGADMIN4',
+        'image': 'dpage/pgadmin4',
+        'version': '6.5'
+    },
     'x-phpmyadmin': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_BITNAMI_PHPMYADMIN',
         'image': 'bitnami/phpmyadmin',
