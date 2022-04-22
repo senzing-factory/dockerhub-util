@@ -1,0 +1,19 @@
+[pylint]
+
+callable=
+    request_method
+disable=
+    broad-except,
+    consider-using-f-string,
+    import-error,
+    line-too-long,
+    not-callable,
+    too-many-branches,
+    too-many-locals,
+    unnecessary-dict-index-lookup,
+good-names=
+    dockerhub-util
+notes=
+    FIXME
+ignore=
+    __init__.py,

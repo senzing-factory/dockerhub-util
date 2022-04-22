@@ -1,28 +1,37 @@
 #! /usr/bin/env python3
 
+'''
 # -----------------------------------------------------------------------------
 # dockerhub-util.py
 # -----------------------------------------------------------------------------
+'''
+
+# Import from standard library. https://docs.python.org/3/library/
 
 import argparse
 import json
 import linecache
 import logging
 import os
-import requests
 import signal
 import sys
 import time
 from datetime import date
+
+# Import from https://pypi.org/
+
+import requests
 from packaging.version import Version
 
-__all__ = []
-__version__ = "1.0.3"  # See https://www.python.org/dev/peps/pep-0396/
-__date__ = '2021-02-22'
-__updated__ = '2022-03-15'
+# Metadata
 
-SENZING_PRODUCT_ID = "5018"  # See https://github.com/Senzing/knowledge-base/blob/master/lists/senzing-product-ids.md
-log_format = '%(asctime)s %(message)s'
+__all__ = []
+__version__ = "1.0.4"  # See https://www.python.org/dev/peps/pep-0396/
+__date__ = '2021-02-22'
+__updated__ = '2022-04-22'
+
+SENZING_PRODUCT_ID = "5018"  # See https://github.com/Senzing/knowledge-base/blob/main/lists/senzing-product-ids.md
+LOG_FORMAT = '%(asctime)s %(message)s'
 
 # Working with bytes.
 
@@ -33,7 +42,7 @@ GIGABYTES = 1024 * MEGABYTES
 # The "configuration_locator" describes where configuration variables are in:
 # 1) Command line options, 2) Environment variables, 3) Configuration files, 4) Default values
 
-configuration_locator = {
+CONFIGURATION_LOCATOR = {
     "debug": {
         "default": False,
         "env": "SENZING_DEBUG",
@@ -77,13 +86,13 @@ configuration_locator = {
 
 # Enumerate keys in 'configuration_locator' that should not be printed to the log.
 
-keys_to_redact = [
+KEYS_TO_REDACT = [
     "dockerhub_password",
 ]
 
 # Docker registries for knowledge-base/lists/docker-versions-latest.sh
 
-dockerhub_repositories_for_latest = {
+DOCKERHUB_REPOSITORIES_FOR_LATEST = {
     'adminer': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_ADMINER',
     },
@@ -192,7 +201,7 @@ dockerhub_repositories_for_latest = {
     'x-bitnami-shell': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_BITNAMI_SHELL',
         'image': 'bitnami/bitnami-shell',
-        'version': '10-debian-10-r354'
+        'version': '10-debian-10-r404'
     },
     'x-busybox': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_BUSYBOX',
@@ -202,12 +211,12 @@ dockerhub_repositories_for_latest = {
     'x-confluentinc-cp-kafka': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_CONFLUENTINC_CP_KAFKA',
         'image': 'confluentinc/cp-kafka',
-        'version': '7.0.1'
+        'version': '7.1.1'
     },
     'x-elasticsearch': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_ELASTICSEARCH',
         'image': 'elasticsearch',
-        'version': '8.0.1'
+        'version': '8.1.3'
     },
     'x-ibmcom-db2': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_IBMCOM_DB2',
@@ -217,22 +226,22 @@ dockerhub_repositories_for_latest = {
     'x-kafdrop': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_OBSIDIANDYNAMICS_KAFDROP',
         'image': 'obsidiandynamics/kafdrop',
-        'version': '3.29.0'
+        'version': '3.30.0'
     },
     'x-kafka': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_BITNAMI_KAFKA',
         'image': 'bitnami/kafka',
-        'version': '3.1.0-debian-10-r33'
+        'version': '3.1.0-debian-10-r86'
     },
     'x-kibana': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_KIBANA',
         'image': 'kibana',
-        'version': '8.0.1'
+        'version': '8.1.3'
     },
     'x-logstash': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_LOGSTASH',
         'image': 'logstash',
-        'version': '8.0.1'
+        'version': '8.1.3'
     },
     'x-mssql': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_MSSQL_SERVER',
@@ -254,7 +263,7 @@ dockerhub_repositories_for_latest = {
     'x-mysql-deprecated': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_MYSQL',
         'image': 'bitnami/mysql',
-        'version': '8.0.28-debian-10-r28'
+        'version': '8.0.28-debian-10-r77'
     },
     'x-mysql-client': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_AREY_MYSQL_CLIENT',
@@ -264,27 +273,22 @@ dockerhub_repositories_for_latest = {
     'x-nginx': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_BITNAMI_NGINX',
         'image': 'bitnami/nginx',
-        'version': '1.21.6-debian-10-r34'
+        'version': '1.21.6-debian-10-r85'
     },
     'x-nginx-ingress-controller': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_BITNAMI_NGINX_INGRESS_CONTROLLER',
         'image': 'bitnami/nginx-ingress-controller',
-        'version': '1.1.1-debian-10-r50'
+        'version': '1.1.3-debian-10-r20'
     },
     'x-pgadmin': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_DPAGE_PGADMIN4',
         'image': 'dpage/pgadmin4',
-        'version': '6.7'
+        'version': '6.8'
     },
     'x-phpmyadmin': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_BITNAMI_PHPMYADMIN',
         'image': 'bitnami/phpmyadmin',
-        'version': '5.1.3-debian-10-r17'
-    },
-    'x-phpmyadmin-deprecated': {
-        'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_PHPMYADMIN',
-        'image': 'bitnami/phpmyadmin',
-        'version': '5.1.3-debian-10-r17'
+        'version': '5.1.3-debian-10-r66'
     },
     'x-phppgadmin': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_BITNAMI_PHPPGADMIN',
@@ -304,22 +308,12 @@ dockerhub_repositories_for_latest = {
     'x-postgres': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_BITNAMI_POSTGRESQL',
         'image': 'bitnami/postgresql',
-        'version': '14.2.0-debian-10-r18'
-    },
-    'x-postgres-deprecated': {
-        'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_POSTGRES',
-        'image': 'bitnami/postgresql',
-        'version': '14.2.0-debian-10-r18'
+        'version': '14.2.0-debian-10-r74'
     },
     'x-rabbitmq': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_BITNAMI_RABBITMQ',
         'image': 'bitnami/rabbitmq',
-        'version': '3.9.13-debian-10-r42'
-    },
-    'x-rabbitmq-deprecated': {
-        'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_RABBITMQ',
-        'image': 'bitnami/rabbitmq',
-        'version': '3.9.13-debian-10-r42'
+        'version': '3.9.15-debian-10-r8'
     },
     'x-sqlite-web': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_SQLITE_WEB',
@@ -329,12 +323,12 @@ dockerhub_repositories_for_latest = {
     'x-swagger-ui': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_SWAGGERAPI_SWAGGER_UI',
         'image': 'swaggerapi/swagger-ui',
-        'version': 'v4.6.1'
+        'version': 'v4.10.3'
     },
     'x-zookeeper': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_BITNAMI_ZOOKEEPER',
         'image': 'bitnami/zookeeper',
-        'version': '3.7.0-debian-10-r307'
+        'version': '3.8.0-debian-10-r37'
     }
 }
 # -----------------------------------------------------------------------------
@@ -435,7 +429,7 @@ MESSAGE_WARN = 300
 MESSAGE_ERROR = 700
 MESSAGE_DEBUG = 900
 
-message_dictionary = {
+MESSAGE_DICTIONARY = {
     "100": "senzing-" + SENZING_PRODUCT_ID + "{0:04d}I",
     "292": "Configuration change detected.  Old: {0} New: {1}",
     "293": "For information on warnings and errors, see https://github.com/Senzing/dockerhub-util",
@@ -462,29 +456,34 @@ message_dictionary = {
 
 
 def message(index, *args):
+    ''' Return an instantiated message. '''
     index_string = str(index)
-    template = message_dictionary.get(index_string, "No message for index {0}.".format(index_string))
+    template = MESSAGE_DICTIONARY.get(index_string, "No message for index {0}.".format(index_string))
     return template.format(*args)
 
 
 def message_generic(generic_index, index, *args):
-    index_string = str(index)
+    ''' Return a formatted message. '''
     return "{0} {1}".format(message(generic_index, index), message(index, *args))
 
 
 def message_info(index, *args):
+    ''' Return an info message. '''
     return message_generic(MESSAGE_INFO, index, *args)
 
 
 def message_warning(index, *args):
+    ''' Return a warning message. '''
     return message_generic(MESSAGE_WARN, index, *args)
 
 
 def message_error(index, *args):
+    ''' Return an error message. '''
     return message_generic(MESSAGE_ERROR, index, *args)
 
 
 def message_debug(index, *args):
+    ''' Return a debug message. '''
     return message_generic(MESSAGE_DEBUG, index, *args)
 
 
@@ -510,13 +509,13 @@ def get_exception():
 # -----------------------------------------------------------------------------
 
 
-def get_configuration(args):
+def get_configuration(subcommand, args):
     ''' Order of precedence: CLI, OS environment variables, INI file, default. '''
     result = {}
 
     # Copy default values into configuration dictionary.
 
-    for key, value in list(configuration_locator.items()):
+    for key, value in list(CONFIGURATION_LOCATOR.items()):
         result[key] = value.get('default', None)
 
     # "Prime the pump" with command line args. This will be done again as the last step.
@@ -528,7 +527,7 @@ def get_configuration(args):
 
     # Copy OS environment variables into configuration dictionary.
 
-    for key, value in list(configuration_locator.items()):
+    for key, value in list(CONFIGURATION_LOCATOR.items()):
         os_env_var = value.get('env', None)
         if os_env_var:
             os_env_value = os.getenv(os_env_var, None)
@@ -617,10 +616,10 @@ def validate_configuration(config):
 def redact_configuration(config):
     ''' Return a shallow copy of config with certain keys removed. '''
     result = config.copy()
-    for key in keys_to_redact:
+    for key in KEYS_TO_REDACT:
         try:
             result.pop(key)
-        except:
+        except Exception:
             pass
     return result
 
@@ -631,7 +630,7 @@ def redact_configuration(config):
 
 
 class DockerHubClient:
-    """ Wrapper to communicate with docker hub API """
+    ''' Wrapper to communicate with docker hub API '''
 
     def __init__(self, config):
         self.auth_token = config.get('auth_token')
@@ -639,8 +638,11 @@ class DockerHubClient:
         self.dockerhub_api_endpoint_v2 = config.get('dockerhub_api_endpoint_v2')
         self.valid_methods = ['GET', 'POST']
 
-    def do_request(self, url, method='GET', data={}):
+    def do_request(self, url, method='GET', data=None):
+        ''' Make an HTTP request. '''
         result = {}
+        if not data:
+            data = {}
         if method not in self.valid_methods:
             raise ValueError('Invalid HTTP request method')
         headers = {'Content-type': 'application/json'}
@@ -657,20 +659,18 @@ class DockerHubClient:
         return result
 
     def get_repositories(self, organization):
+        ''' Return a list of repositories. '''
         url = '{0}/repositories/{1}/'.format(self.dockerhub_api_endpoint_v2, organization)
         return self.do_request(url)
 
     def get_repository_tags(self, organization, repository_name):
+        ''' Return a list repository tags for a repository. '''
         url = '{0}/repositories/{1}/{2}/tags'.format(self.dockerhub_api_endpoint_v1, organization, repository_name)
         return self.do_request(url)
 
 # -----------------------------------------------------------------------------
 # Utility functions
 # -----------------------------------------------------------------------------
-
-
-def bootstrap_signal_handler(signal, frame):
-    sys.exit(0)
 
 
 def create_signal_handler_function(args):
@@ -680,9 +680,16 @@ def create_signal_handler_function(args):
 
     def result_function(signal_number, frame):
         logging.info(message_info(298, args))
+        logging.debug(message_debug(901, signal_number, frame))
         sys.exit(0)
 
     return result_function
+
+
+def bootstrap_signal_handler(signal_number, frame):
+    ''' Exit on signal error. '''
+    logging.debug(message_debug(901, signal_number, frame))
+    sys.exit(0)
 
 
 def entry_template(config):
@@ -728,6 +735,7 @@ def exit_silently():
 
 
 def max_version(versions):
+    ''' Return most recent (highest) version. '''
 
     result = Version('0.0.0')
     for version in versions:
@@ -738,6 +746,8 @@ def max_version(versions):
 
 
 def find_latest_version(version_list):
+    ''' Return the latest version after redacting the version_list. '''
+
     # TODO: Perhaps improve with https://pypi.org/project/semver/
 
     redact_list = [
@@ -757,6 +767,7 @@ def find_latest_version(version_list):
 
 
 def get_latest_versions(config, dockerhub_repositories):
+    ''' Get the latest version of Docker images. '''
 
     result = []
     organization_default = config.get('dockerhub_organization')
@@ -781,7 +792,8 @@ def get_latest_versions(config, dockerhub_repositories):
     return result
 
 
-def get_image_names(config, dockerhub_repositories):
+def get_image_names(dockerhub_repositories):
+    ''' Get Docker images names from DockerHub. '''
 
     result = {}
     for key, value in dockerhub_repositories.items():
@@ -810,12 +822,12 @@ def get_image_names(config, dockerhub_repositories):
 # -----------------------------------------------------------------------------
 
 
-def do_docker_acceptance_test(args):
+def do_docker_acceptance_test(subcommand, args):
     ''' For use with Docker acceptance testing. '''
 
     # Get context from CLI, environment variables, and ini files.
 
-    config = get_configuration(args)
+    config = get_configuration(subcommand, args)
 
     # Prolog.
 
@@ -826,12 +838,12 @@ def do_docker_acceptance_test(args):
     logging.info(exit_template(config))
 
 
-def do_print_image_names(args):
+def do_print_image_names(subcommand, args):
     ''' Do a task. '''
 
     # Get context from CLI, environment variables, and ini files.
 
-    config = get_configuration(args)
+    config = get_configuration(subcommand, args)
 
     # Prolog.
 
@@ -839,7 +851,7 @@ def do_print_image_names(args):
 
     # Do work.
 
-    response = get_image_names(config, dockerhub_repositories_for_latest)
+    response = get_image_names(DOCKERHUB_REPOSITORIES_FOR_LATEST)
 
     response_json = json.dumps(response, sort_keys=True, indent=4)
     print(response_json)
@@ -849,12 +861,12 @@ def do_print_image_names(args):
     logging.info(exit_template(config))
 
 
-def do_print_latest_versions(args):
+def do_print_latest_versions(subcommand, args):
     ''' Do a task. '''
 
     # Get context from CLI, environment variables, and ini files.
 
-    config = get_configuration(args)
+    config = get_configuration(subcommand, args)
 
     # Prolog.
 
@@ -862,7 +874,7 @@ def do_print_latest_versions(args):
 
     # Do work.
 
-    response = get_latest_versions(config, dockerhub_repositories_for_latest)
+    response = get_latest_versions(config, DOCKERHUB_REPOSITORIES_FOR_LATEST)
 
     print("#!/usr/bin/env bash")
     print("")
@@ -877,12 +889,12 @@ def do_print_latest_versions(args):
     logging.info(exit_template(config))
 
 
-def do_sleep(args):
+def do_sleep(subcommand, args):
     ''' Sleep.  Used for debugging. '''
 
     # Get context from CLI, environment variables, and ini files.
 
-    config = get_configuration(args)
+    config = get_configuration(subcommand, args)
 
     # Prolog.
 
@@ -892,7 +904,7 @@ def do_sleep(args):
 
     sleep_time_in_seconds = config.get('sleep_time_in_seconds')
 
-    # Sleep
+    # Sleep.
 
     if sleep_time_in_seconds > 0:
         logging.info(message_info(296, sleep_time_in_seconds))
@@ -909,10 +921,11 @@ def do_sleep(args):
     logging.info(exit_template(config))
 
 
-def do_version(args):
+def do_version(subcommand, args):
     ''' Log version information. '''
 
     logging.info(message_info(294, __version__, __updated__))
+    logging.debug(message_debug(902, subcommand, args))
 
 # -----------------------------------------------------------------------------
 # Main
@@ -923,7 +936,7 @@ if __name__ == "__main__":
 
     # Configure logging. See https://docs.python.org/2/library/logging.html#levels
 
-    log_level_map = {
+    LOG_LEVEL_MAP = {
         "notset": logging.NOTSET,
         "debug": logging.DEBUG,
         "info": logging.INFO,
@@ -933,9 +946,9 @@ if __name__ == "__main__":
         "critical": logging.CRITICAL
     }
 
-    log_level_parameter = os.getenv("SENZING_LOG_LEVEL", "info").lower()
-    log_level = log_level_map.get(log_level_parameter, logging.INFO)
-    logging.basicConfig(format=log_format, level=log_level)
+    LOG_LEVEL_PARAMETER = os.getenv("SENZING_LOG_LEVEL", "info").lower()
+    LOG_LEVEL = LOG_LEVEL_MAP.get(LOG_LEVEL_PARAMETER, logging.INFO)
+    logging.basicConfig(format=LOG_FORMAT, level=LOG_LEVEL)
     logging.debug(message_debug(998))
 
     # Trap signals temporarily until args are parsed.
@@ -945,38 +958,38 @@ if __name__ == "__main__":
 
     # Parse the command line arguments.
 
-    subcommand = os.getenv("SENZING_SUBCOMMAND", None)
-    parser = get_parser()
+    SUBCOMMAND = os.getenv("SENZING_SUBCOMMAND", None)
+    PARSER = get_parser()
     if len(sys.argv) > 1:
-        args = parser.parse_args()
-        subcommand = args.subcommand
-    elif subcommand:
-        args = argparse.Namespace(subcommand=subcommand)
+        ARGS = PARSER.parse_args()
+        SUBCOMMAND = ARGS.subcommand
+    elif SUBCOMMAND:
+        ARGS = argparse.Namespace(subcommand=SUBCOMMAND)
     else:
-        parser.print_help()
-        if len(os.getenv("SENZING_DOCKER_LAUNCHED", "")):
-            subcommand = "sleep"
-            args = argparse.Namespace(subcommand=subcommand)
-            do_sleep(args)
+        PARSER.print_help()
+        if len(os.getenv("SENZING_DOCKER_LAUNCHED", "")) > 0:
+            SUBCOMMAND = "sleep"
+            ARGS = argparse.Namespace(subcommand=SUBCOMMAND)
+            do_sleep(SUBCOMMAND, ARGS)
         exit_silently()
 
     # Catch interrupts. Tricky code: Uses currying.
 
-    signal_handler = create_signal_handler_function(args)
-    signal.signal(signal.SIGINT, signal_handler)
-    signal.signal(signal.SIGTERM, signal_handler)
+    SIGNAL_HANDLER = create_signal_handler_function(ARGS)
+    signal.signal(signal.SIGINT, SIGNAL_HANDLER)
+    signal.signal(signal.SIGTERM, SIGNAL_HANDLER)
 
     # Transform subcommand from CLI parameter to function name string.
 
-    subcommand_function_name = "do_{0}".format(subcommand.replace('-', '_'))
+    SUBCOMMAND_FUNCTION_NAME = "do_{0}".format(SUBCOMMAND.replace('-', '_'))
 
     # Test to see if function exists in the code.
 
-    if subcommand_function_name not in globals():
-        logging.warning(message_warning(696, subcommand))
-        parser.print_help()
+    if SUBCOMMAND_FUNCTION_NAME not in globals():
+        logging.warning(message_warning(696, SUBCOMMAND))
+        PARSER.print_help()
         exit_silently()
 
     # Tricky code for calling function based on string.
 
-    globals()[subcommand_function_name](args)
+    globals()[SUBCOMMAND_FUNCTION_NAME](SUBCOMMAND, ARGS)
