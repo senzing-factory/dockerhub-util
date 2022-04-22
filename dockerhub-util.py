@@ -92,7 +92,7 @@ KEYS_TO_REDACT = [
 
 # Docker registries for knowledge-base/lists/docker-versions-latest.sh
 
-dockerhub_repositories_for_latest = {
+DOCKERHUB_REPOSITORIES_FOR_LATEST = {
     'adminer': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_ADMINER',
     },
@@ -638,9 +638,11 @@ class DockerHubClient:
         self.dockerhub_api_endpoint_v2 = config.get('dockerhub_api_endpoint_v2')
         self.valid_methods = ['GET', 'POST']
 
-    def do_request(self, url, method='GET', data={}):
+    def do_request(self, url, method='GET', data=None):
         ''' Make an HTTP request. '''
         result = {}
+        if not data:
+            data = {}
         if method not in self.valid_methods:
             raise ValueError('Invalid HTTP request method')
         headers = {'Content-type': 'application/json'}
@@ -790,7 +792,7 @@ def get_latest_versions(config, dockerhub_repositories):
     return result
 
 
-def get_image_names(config, dockerhub_repositories):
+def get_image_names(dockerhub_repositories):
     ''' Get Docker images names from DockerHub. '''
 
     result = {}
@@ -825,7 +827,7 @@ def do_docker_acceptance_test(subcommand, args):
 
     # Get context from CLI, environment variables, and ini files.
 
-    config = get_configuration(args)
+    config = get_configuration(subcommand, args)
 
     # Prolog.
 
@@ -836,12 +838,12 @@ def do_docker_acceptance_test(subcommand, args):
     logging.info(exit_template(config))
 
 
-def do_print_image_names(subcommand, margs):
+def do_print_image_names(subcommand, args):
     ''' Do a task. '''
 
     # Get context from CLI, environment variables, and ini files.
 
-    config = get_configuration(margs)
+    config = get_configuration(subcommand, args)
 
     # Prolog.
 
@@ -849,7 +851,7 @@ def do_print_image_names(subcommand, margs):
 
     # Do work.
 
-    response = get_image_names(config, dockerhub_repositories_for_latest)
+    response = get_image_names(DOCKERHUB_REPOSITORIES_FOR_LATEST)
 
     response_json = json.dumps(response, sort_keys=True, indent=4)
     print(response_json)
@@ -864,7 +866,7 @@ def do_print_latest_versions(subcommand, args):
 
     # Get context from CLI, environment variables, and ini files.
 
-    config = get_configuration(args)
+    config = get_configuration(subcommand, args)
 
     # Prolog.
 
@@ -872,7 +874,7 @@ def do_print_latest_versions(subcommand, args):
 
     # Do work.
 
-    response = get_latest_versions(config, dockerhub_repositories_for_latest)
+    response = get_latest_versions(config, DOCKERHUB_REPOSITORIES_FOR_LATEST)
 
     print("#!/usr/bin/env bash")
     print("")

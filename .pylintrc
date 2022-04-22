@@ -1,14 +1,16 @@
 [pylint]
-ignore=
-    __init__.py,
+
+callable=
+    request_method
 disable=
     broad-except,
-    dangerous-default-value,
-    fixme,
-    invalid-name,
     line-too-long,
     not-callable,
-    redefined-outer-name,
     too-many-branches,
     too-many-locals,
-    unused-argument,
+good-names=
+    dockerhub-util
+notes=
+    FIXME
+ignore=
+    __init__.py,
