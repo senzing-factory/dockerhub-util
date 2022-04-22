@@ -1,0 +1,21 @@
+[pylint]
+ignore=
+    __init__.py,
+disable=
+    bare-except,
+    broad-except,
+    dangerous-default-value,
+    fixme,
+    invalid-name,
+    len-as-condition,
+    line-too-long,
+    missing-function-docstring,
+    missing-module-docstring,
+    not-callable,
+    redefined-outer-name,
+    too-many-branches,
+    too-many-locals,
+    unused-argument,
+    unused-variable,
+    wrong-import-order,
+
