@@ -5,6 +5,7 @@ callable=
 disable=
     broad-except,
     consider-using-f-string,
+    import-error,
     line-too-long,
     not-callable,
     too-many-branches,
