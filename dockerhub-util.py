@@ -28,7 +28,7 @@ from packaging.version import Version
 __all__ = []
 __version__ = "1.0.5"  # See https://www.python.org/dev/peps/pep-0396/
 __date__ = '2021-02-22'
-__updated__ = '2022-05-23'
+__updated__ = '2022-06-08'
 
 SENZING_PRODUCT_ID = "5018"  # See https://github.com/Senzing/knowledge-base/blob/main/lists/senzing-product-ids.md
 LOG_FORMAT = '%(asctime)s %(message)s'
@@ -209,7 +209,7 @@ DOCKERHUB_REPOSITORIES_FOR_LATEST = {
     'x-busybox': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_BUSYBOX',
         'image': 'busybox',
-        'version': '1.35.0'
+        'version': '1.34.1'
     },
     'x-confluentinc-cp-kafka': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_CONFLUENTINC_CP_KAFKA',
@@ -395,14 +395,14 @@ def get_parser():
 
     # Augment "subcommands" variable with arguments specified by aspects.
 
-    for subcommand, subcommand_value in subcommands.items():
+    for subcommand_value in subcommands.values():
         if 'argument_aspects' in subcommand_value:
             for aspect in subcommand_value['argument_aspects']:
-                if 'arguments' not in subcommands[subcommand]:
-                    subcommands[subcommand]['arguments'] = {}
+                if 'arguments' not in subcommand_value:
+                    subcommand_value['arguments'] = {}
                 arguments = argument_aspects.get(aspect, {})
                 for argument, argument_value in arguments.items():
-                    subcommands[subcommand]['arguments'][argument] = argument_value
+                    subcommand_value['arguments'][argument] = argument_value
 
     parser = argparse.ArgumentParser(description="Reports from DockerHub. For more information, see https://github.com/Senzing/dockerhub-util")
     subparsers = parser.add_subparsers(dest='subcommand', help='Subcommands (SENZING_SUBCOMMAND):')
