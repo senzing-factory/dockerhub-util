@@ -8,7 +8,9 @@ disable=
     import-error,
     line-too-long,
     too-many-branches,
+    too-many-lines,
     too-many-locals,
+    unrecognized-option,
 good-names=
     dockerhub-util
 notes=

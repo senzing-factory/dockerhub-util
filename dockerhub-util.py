@@ -28,7 +28,7 @@ from packaging.version import Version
 __all__ = []
 __version__ = "1.0.5"  # See https://www.python.org/dev/peps/pep-0396/
 __date__ = '2021-02-22'
-__updated__ = '2022-06-08'
+__updated__ = '2022-06-13'
 
 SENZING_PRODUCT_ID = "5018"  # See https://github.com/Senzing/knowledge-base/blob/main/lists/senzing-product-ids.md
 LOG_FORMAT = '%(asctime)s %(message)s'
@@ -72,6 +72,11 @@ CONFIGURATION_LOCATOR = {
         "default": None,
         "env": "SENZING_DOCKERHUB_USERNAME",
         "cli": "dockerhub-username"
+    },
+    "print_format": {
+        "default": "{0}",
+        "env": "SENZING_PRINT_FORMAT",
+        "cli": "print-format"
     },
     "sleep_time_in_seconds": {
         "default": 0,
@@ -343,6 +348,11 @@ def get_parser():
     ''' Parse commandline arguments. '''
 
     subcommands = {
+        'print-active-image-names': {
+            "help": 'Print image names hosted on DockerHub.',
+            "argument_aspects": ["common", "print"],
+            "arguments": {},
+        },
         'print-image-names': {
             "help": 'Print image names used in Senzing demonstrations.',
             "argument_aspects": ["common"],
@@ -389,6 +399,13 @@ def get_parser():
                 "dest": "dockerhub_api_endpoint_v2",
                 "metavar": "SENZING_DOCKERHUB_API_ENDPOINT_V2",
                 "help": "Dockerhub API endpoint Version 2"
+            },
+        },
+        "print": {
+            "--print-format": {
+                "dest": "print_format",
+                "metavar": "SENZING_PRINT_FORMAT",
+                "help": "Format of output. Default: '{0}'"
             },
         },
     }
@@ -663,7 +680,7 @@ class DockerHubClient:
 
     def get_repositories(self, organization):
         ''' Return a list of repositories. '''
-        url = '{0}/repositories/{1}/'.format(self.dockerhub_api_endpoint_v2, organization)
+        url = '{0}/repositories/{1}/?page_size=200'.format(self.dockerhub_api_endpoint_v2, organization)
         return self.do_request(url)
 
     def get_repository_tags(self, organization, repository_name):
@@ -769,6 +786,17 @@ def find_latest_version(version_list):
     return max_version(version_list)
 
 
+def get_active_image_names(config):
+    ''' Get the latest version of Docker images. '''
+
+    result = []
+    organization = config.get('dockerhub_organization')
+    dockerhub_client = DockerHubClient(config)
+    response = dockerhub_client.get_repositories(organization)
+    result = response.get("results", result)
+    return result
+
+
 def get_latest_versions(config, dockerhub_repositories):
     ''' Get the latest version of Docker images. '''
 
@@ -858,6 +886,34 @@ def do_print_image_names(subcommand, args):
 
     response_json = json.dumps(response, sort_keys=True, indent=4)
     print(response_json)
+
+    # Epilog.
+
+    logging.info(exit_template(config))
+
+
+def do_print_active_image_names(subcommand, args):
+    ''' Do a task. '''
+
+    # Get context from CLI, environment variables, and ini files.
+
+    config = get_configuration(subcommand, args)
+
+    # Prolog.
+
+    logging.info(entry_template(config))
+
+    # Pull variables from config.
+
+    print_format = config.get("print_format")
+
+    # Do work.
+
+    response = get_active_image_names(config)
+
+    for item in response:
+        print_string = "{0}/{1}".format(item.get("namespace"), item.get("name"))
+        print(print_format.format(print_string))
 
     # Epilog.
 
