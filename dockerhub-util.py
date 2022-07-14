@@ -28,7 +28,7 @@ from packaging.version import Version
 __all__ = []
 __version__ = "1.0.5"  # See https://www.python.org/dev/peps/pep-0396/
 __date__ = '2021-02-22'
-__updated__ = '2022-06-30'
+__updated__ = '2022-07-14'
 
 SENZING_PRODUCT_ID = "5018"  # See https://github.com/Senzing/knowledge-base/blob/main/lists/senzing-product-ids.md
 LOG_FORMAT = '%(asctime)s %(message)s'
@@ -116,6 +116,12 @@ DOCKERHUB_REPOSITORIES_FOR_LATEST = {
     'db2-driver-installer': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_DB2_DRIVER_INSTALLER',
     },
+    'docker-compose-air-gapper': {
+        'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_DOCKER_COMPOSE_AIR_GAPPER',
+    },
+    'dockerhub-util': {
+        'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_DOCKERHUB_UTIL',
+    },
     'entity-search-web-app': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_ENTITY_SEARCH_WEB_APP',
     },
@@ -178,6 +184,12 @@ DOCKERHUB_REPOSITORIES_FOR_LATEST = {
     },
     'senzing-poc-server': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_SENZING_POC_SERVER',
+    },
+    'senzingapi-runtime': {
+        'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_SENZINGAPI_RUNTIME',
+    },
+    'senzingapi-tools': {
+        'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_SENZINGAPI_TOOLS',
     },
     'sshd': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_SSHD',
