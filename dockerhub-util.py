@@ -95,6 +95,14 @@ KEYS_TO_REDACT = [
     "dockerhub_password",
 ]
 
+REDACT_VERSIONS = [
+    'experimental',
+    'latest',
+    'sha256-',
+    'staging',
+    'test'
+]
+
 # Docker registries for knowledge-base/lists/docker-versions-latest.sh
 
 DOCKERHUB_REPOSITORIES_FOR_LATEST = {
@@ -780,27 +788,20 @@ def max_version(versions):
     return result
 
 
+def redacted(key):
+    ''' Determine if a key is redacted. '''
+
+    for redact in REDACT_VERSIONS:
+        if key.startswith(redact):
+            return True
+    return False
+
+
 def find_latest_version(version_list):
     ''' Return the latest version after redacting the version_list. '''
 
     # TODO: Perhaps improve with https://pypi.org/project/semver/
-
-    redact_list = [
-        'experimental',
-        'latest',
-        'sha256-',
-        'staging',
-        'test'
-    ]
-
-    for redact in redact_list:
-        if redact in version_list:
-            version_list.remove(redact)
-            continue
-        for version in version_list:
-            if version.startswith(redact):
-                version_list.remove(version)
-    return max_version(version_list)
+    return max_version([x for x in version_list if not redacted(x)])
 
 
 def get_active_image_names(config):
