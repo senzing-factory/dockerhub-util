@@ -28,7 +28,7 @@ from packaging.version import Version
 __all__ = []
 __version__ = "1.0.5"  # See https://www.python.org/dev/peps/pep-0396/
 __date__ = '2021-02-22'
-__updated__ = '2022-08-18'
+__updated__ = '2022-08-25'
 
 SENZING_PRODUCT_ID = "5018"  # See https://github.com/Senzing/knowledge-base/blob/main/lists/senzing-product-ids.md
 LOG_FORMAT = '%(asctime)s %(message)s'
@@ -786,8 +786,9 @@ def find_latest_version(version_list):
     # TODO: Perhaps improve with https://pypi.org/project/semver/
 
     redact_list = [
-        'latest',
         'experimental',
+        'latest',
+        'sha256-',
         'staging',
         'test'
     ]
