@@ -936,7 +936,7 @@ def do_print_active_image_names(subcommand, args):
         repositories.append("{0}/{1}".format(item.get("namespace"), item.get("name")))
     repositories.sort()
     for repository in repositories:
-        print(repository)
+        print(print_format.format(repository))
 
     # Epilog.
 
