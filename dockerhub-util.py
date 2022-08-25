@@ -28,7 +28,7 @@ from packaging.version import Version
 __all__ = []
 __version__ = "1.0.5"  # See https://www.python.org/dev/peps/pep-0396/
 __date__ = '2021-02-22'
-__updated__ = '2022-08-18'
+__updated__ = '2022-08-25'
 
 SENZING_PRODUCT_ID = "5018"  # See https://github.com/Senzing/knowledge-base/blob/main/lists/senzing-product-ids.md
 LOG_FORMAT = '%(asctime)s %(message)s'
@@ -93,6 +93,14 @@ CONFIGURATION_LOCATOR = {
 
 KEYS_TO_REDACT = [
     "dockerhub_password",
+]
+
+REDACT_VERSIONS = [
+    'experimental',
+    'latest',
+    'sha256-',
+    'staging',
+    'test'
 ]
 
 # Docker registries for knowledge-base/lists/docker-versions-latest.sh
@@ -780,26 +788,20 @@ def max_version(versions):
     return result
 
 
+def redacted(key):
+    ''' Determine if a key is redacted. '''
+
+    for redact in REDACT_VERSIONS:
+        if key.startswith(redact):
+            return True
+    return False
+
+
 def find_latest_version(version_list):
     ''' Return the latest version after redacting the version_list. '''
 
     # TODO: Perhaps improve with https://pypi.org/project/semver/
-
-    redact_list = [
-        'latest',
-        'experimental',
-        'staging',
-        'test'
-    ]
-
-    for redact in redact_list:
-        if redact in version_list:
-            version_list.remove(redact)
-            continue
-        for version in version_list:
-            if version.startswith(redact):
-                version_list.remove(version)
-    return max_version(version_list)
+    return max_version([x for x in version_list if not redacted(x)])
 
 
 def get_active_image_names(config):
@@ -927,9 +929,14 @@ def do_print_active_image_names(subcommand, args):
 
     response = get_active_image_names(config)
 
+    # Sort response.
+
+    repositories = []
     for item in response:
-        print_string = "{0}/{1}".format(item.get("namespace"), item.get("name"))
-        print(print_format.format(print_string))
+        repositories.append("{0}/{1}".format(item.get("namespace"), item.get("name")))
+    repositories.sort()
+    for repository in repositories:
+        print(print_format.format(repository))
 
     # Epilog.
 
