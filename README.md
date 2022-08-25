@@ -259,12 +259,12 @@ The following examples require initialization described in
         > ~/senzing.git/knowledge-base/lists/docker-image-names.json
     ```
 
-1. Create `knowledge-base/lists/docker-active-image-names.json`
+1. Create `knowledge-base/lists/docker-active-image-names.txt`
    Example:
 
     ```console
     ~/senzing.git/dockerhub-util/dockerhub-util.py print-active-image-names \
-        > ~/senzing.git/knowledge-base/lists/docker-active-image-names.json
+        > ~/senzing.git/knowledge-base/lists/docker-active-image-names.txt
     ```
 
 ### Examples of Docker
