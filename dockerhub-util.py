@@ -26,9 +26,9 @@ from packaging.version import Version
 # Metadata
 
 __all__ = []
-__version__ = "1.0.5"  # See https://www.python.org/dev/peps/pep-0396/
+__version__ = "1.1.0"  # See https://www.python.org/dev/peps/pep-0396/
 __date__ = '2021-02-22'
-__updated__ = '2022-08-25'
+__updated__ = '2022-08-26'
 
 SENZING_PRODUCT_ID = "5018"  # See https://github.com/Senzing/knowledge-base/blob/main/lists/senzing-product-ids.md
 LOG_FORMAT = '%(asctime)s %(message)s'
@@ -169,9 +169,6 @@ DOCKERHUB_REPOSITORIES_FOR_LATEST = {
     'redoer': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_REDOER',
     },
-    'redoer-with-data': {
-        'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_REDOER_WITH_DATA',
-    },
     'resolver': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_RESOLVER',
     },
@@ -186,9 +183,6 @@ DOCKERHUB_REPOSITORIES_FOR_LATEST = {
     },
     'senzing-console': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_SENZING_CONSOLE',
-    },
-    'senzing-debug': {
-        'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_SENZING_DEBUG',
     },
     'senzing-listener': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_SENZING_LISTENER',
@@ -207,9 +201,6 @@ DOCKERHUB_REPOSITORIES_FOR_LATEST = {
     },
     'stream-loader': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_STREAM_LOADER',
-    },
-    'stream-loader-with-data': {
-        'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_STREAM_LOADER_WITH_DATA',
     },
     'stream-logger': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_STREAM_LOGGER',
