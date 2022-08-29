@@ -6,6 +6,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 [markdownlint](https://dlaa.me/markdownlint/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2022-08-26
+
+### Added in 1.1.0
+
+- `print-active-image-names` subcommand
+
+### Changed in 1.1.0
+
+- In `Dockerfile`, bump from `debian:11.3-slim@sha256:fbaacd55d14bd0ae0c0441c2347217da77ad83c517054623357d1f9d07f79f5e` to `debian:11.4-slim@sha256:68c1f6bae105595d2ebec1589d9d476ba2939fdb11eaba1daec4ea826635ce75`
+- Update list of Docker images
+- Update hard-coded Docker image versions
+
 ## [1.0.5] - 2022-05-10
 
 ### Changed in 1.0.5
