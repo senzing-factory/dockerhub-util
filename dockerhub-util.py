@@ -308,7 +308,7 @@ DOCKERHUB_REPOSITORIES_FOR_LATEST = {
     'x-pgadmin': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_DPAGE_PGADMIN4',
         'image': 'dpage/pgadmin4',
-        'version': '6.12'
+        'version': '6.13'
     },
     'x-phpmyadmin': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_BITNAMI_PHPMYADMIN',
