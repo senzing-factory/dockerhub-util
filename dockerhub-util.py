@@ -26,9 +26,9 @@ from packaging.version import Version
 # Metadata
 
 __all__ = []
-__version__ = "1.1.0"  # See https://www.python.org/dev/peps/pep-0396/
+__version__ = "1.2.0"  # See https://www.python.org/dev/peps/pep-0396/
 __date__ = '2021-02-22'
-__updated__ = '2022-09-01'
+__updated__ = '2022-09-14'
 
 SENZING_PRODUCT_ID = "5018"  # See https://github.com/Senzing/knowledge-base/blob/main/lists/senzing-product-ids.md
 LOG_FORMAT = '%(asctime)s %(message)s'
@@ -47,11 +47,6 @@ CONFIGURATION_LOCATOR = {
         "default": False,
         "env": "SENZING_DEBUG",
         "cli": "debug"
-    },
-    "dockerhub_api_endpoint_v1": {
-        "default": "https://registry.hub.docker.com/v1",
-        "env": "SENZING_DOCKERHUB_API_ENDPOINT_V1",
-        "cli": "dockerhub-api-endpoint-v1"
     },
     "dockerhub_api_endpoint_v2": {
         "default": "https://hub.docker.com/v2",
@@ -407,11 +402,6 @@ def get_parser():
                 "action": "store_true",
                 "help": "Enable debugging. (SENZING_DEBUG) Default: False"
             },
-            "--dockerhub-api-endpoint-v1": {
-                "dest": "dockerhub_api_endpoint_v1",
-                "metavar": "SENZING_DOCKERHUB_API_ENDPOINT_V1",
-                "help": "Dockerhub API endpoint Version 1"
-            },
             "--dockerhub-api-endpoint-v2": {
                 "dest": "dockerhub_api_endpoint_v2",
                 "metavar": "SENZING_DOCKERHUB_API_ENDPOINT_V2",
@@ -671,7 +661,6 @@ class DockerHubClient:
 
     def __init__(self, config):
         self.auth_token = config.get('auth_token')
-        self.dockerhub_api_endpoint_v1 = config.get('dockerhub_api_endpoint_v1')
         self.dockerhub_api_endpoint_v2 = config.get('dockerhub_api_endpoint_v2')
         self.valid_methods = ['GET', 'POST']
 
@@ -702,7 +691,7 @@ class DockerHubClient:
 
     def get_repository_tags(self, organization, repository_name):
         ''' Return a list repository tags for a repository. '''
-        url = '{0}/repositories/{1}/{2}/tags'.format(self.dockerhub_api_endpoint_v1, organization, repository_name)
+        url = '{0}/repositories/{1}/{2}/tags'.format(self.dockerhub_api_endpoint_v2, organization, repository_name)
         return self.do_request(url)
 
 # -----------------------------------------------------------------------------
@@ -822,7 +811,8 @@ def get_latest_versions(config, dockerhub_repositories):
         if not latest_version:
             repository_name = value.get('repository', key)
             response = dockerhub_client.get_repository_tags(organization, repository_name)
-            version_tags = [x.get('name') for x in response]
+            response_results = response.get('results')
+            version_tags = [x.get('name') for x in response_results]
             try:
                 latest_version = find_latest_version(version_tags)
             except Exception as err:
