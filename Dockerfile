@@ -5,7 +5,7 @@ ENV REFRESHED_AT=2022-09-27
 
 LABEL Name="senzing/dockterhub-util" \
       Maintainer="support@senzing.com" \
-      Version="1.2.0"
+      Version="1.2.1"
 
 HEALTHCHECK CMD ["/app/healthcheck.sh"]
 
