@@ -28,7 +28,7 @@ from packaging.version import Version
 __all__ = []
 __version__ = "1.2.1"  # See https://www.python.org/dev/peps/pep-0396/
 __date__ = '2021-02-22'
-__updated__ = '2022-09-29'
+__updated__ = '2022-09-30'
 
 SENZING_PRODUCT_ID = "5018"  # See https://github.com/Senzing/knowledge-base/blob/main/lists/senzing-product-ids.md
 LOG_FORMAT = '%(asctime)s %(message)s'
@@ -303,7 +303,7 @@ DOCKERHUB_REPOSITORIES_FOR_LATEST = {
     'x-pgadmin': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_DPAGE_PGADMIN4',
         'image': 'dpage/pgadmin4',
-        'version': '6.13'
+        'version': '6.14'
     },
     'x-phpmyadmin': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_BITNAMI_PHPMYADMIN',
