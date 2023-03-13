@@ -28,7 +28,7 @@ from packaging.version import Version
 __all__ = []
 __version__ = "1.2.2"  # See https://www.python.org/dev/peps/pep-0396/
 __date__ = '2021-02-22'
-__updated__ = '2023-02-09'
+__updated__ = '2023-03-13'
 
 SENZING_PRODUCT_ID = "5018"  # See https://github.com/Senzing/knowledge-base/blob/main/lists/senzing-product-ids.md
 LOG_FORMAT = '%(asctime)s %(message)s'
@@ -131,6 +131,9 @@ DOCKERHUB_REPOSITORIES_FOR_LATEST = {
     'entity-search-web-app-console': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_ENTITY_SEARCH_WEB_APP_CONSOLE',
     },
+    'file-loader': {
+        'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_FILE_LOADER',
+    },
     'g2command': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_G2COMMAND',
     },
@@ -182,11 +185,17 @@ DOCKERHUB_REPOSITORIES_FOR_LATEST = {
     'senzing-console': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_SENZING_CONSOLE',
     },
+    'senzing-console-slim': {
+        'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_SENZING_CONSOLE_SLIM',
+    },
     'senzing-listener': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_SENZING_LISTENER',
     },
     'senzing-poc-server': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_SENZING_POC_SERVER',
+    },
+    'senzing-tools': {
+        'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_SENZING_TOOLS',
     },
     'senzingapi-runtime': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_SENZINGAPI_RUNTIME',
