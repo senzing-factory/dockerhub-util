@@ -37,7 +37,6 @@ optional arguments:
 
 1. [Preamble](#preamble)
     1. [Legend](#legend)
-1. [Related artifacts](#related-artifacts)
 1. [Expectations](#expectations)
 1. [Demonstrate using Command Line Interface](#demonstrate-using-command-line-interface)
     1. [Prerequisites for CLI](#prerequisites-for-cli)
@@ -46,16 +45,7 @@ optional arguments:
 1. [Demonstrate using Docker](#demonstrate-using-docker)
     1. [Prerequisites for Docker](#prerequisites-for-docker)
     1. [Run Docker container](#run-docker-container)
-1. [Develop](#develop)
-    1. [Prerequisites for development](#prerequisites-for-development)
-    1. [Clone repository](#clone-repository)
-    1. [Build Docker image](#build-docker-image)
-1. [Examples](#examples)
-    1. [Examples of CLI](#examples-of-cli)
-    1. [Examples of Docker](#examples-of-docker)
-1. [Advanced](#advanced)
-    1. [Configuration](#configuration)
-1. [Errors](#errors)
+1. [Configuration](#configuration)
 1. [References](#references)
 
 ## Preamble
@@ -77,10 +67,6 @@ describing where we can improve.   Now on with the show...
    Perhaps it's an optional step.
 1. :pencil2: - A "pencil" icon means that the instructions may need modification before performing.
 1. :warning: - A "warning" icon means that something tricky is happening, so pay attention.
-
-## Related artifacts
-
-1. [DockerHub](https://hub.docker.com/r/senzing/dockerhub-util)
 
 ## Expectations
 
@@ -137,7 +123,7 @@ These are "one-time tasks" which may already have been completed.
         ```
 
 1. :thinking: **Alternative:** The entire git repository can be downloaded by following instructions at
-   [Clone repository](#clone-repository)
+   [Clone repository](development.md#clone-repository)
 
 ### Run command
 
@@ -148,7 +134,7 @@ These are "one-time tasks" which may already have been completed.
    ${SENZING_DOWNLOAD_FILE} --help
    ```
 
-1. For more examples of use, see [Examples of CLI](#examples-of-cli).
+1. For more examples of use, see [Examples of CLI](docs/examples.md#examples-of-cli).
 
 ## Demonstrate using Docker
 
@@ -158,7 +144,7 @@ These are "one-time tasks" which may already have been completed.
 These are "one-time tasks" which may already have been completed.
 
 1. The following software programs need to be installed:
-    1. [docker](https://github.com/Senzing/knowledge-base/blob/main/HOWTO/install-docker.md)
+    1. [docker](https://github.com/Senzing/knowledge-base/blob/main/WHATIS/docker.md)
 
 ### Run Docker container
 
@@ -176,115 +162,9 @@ Unset `*_PARAMETER` environment variables have no effect on the
       senzing/dockerhub-util
     ```
 
-1. For more examples of use, see [Examples of Docker](#examples-of-docker).
+1. For more examples of use, see [Examples of Docker](docs/examples.md#examples-of-docker).
 
-## Develop
-
-The following instructions are used when modifying and building the Docker image.
-
-### Prerequisites for development
-
-:thinking: The following tasks need to be complete before proceeding.
-These are "one-time tasks" which may already have been completed.
-
-1. The following software programs need to be installed:
-    1. [git](https://github.com/Senzing/knowledge-base/blob/main/HOWTO/install-git.md)
-    1. [make](https://github.com/Senzing/knowledge-base/blob/main/HOWTO/install-make.md)
-    1. [docker](https://github.com/Senzing/knowledge-base/blob/main/HOWTO/install-docker.md)
-
-### Clone repository
-
-For more information on environment variables,
-see [Environment Variables](https://github.com/Senzing/knowledge-base/blob/main/lists/environment-variables.md).
-
-1. Set these environment variable values:
-
-    ```console
-    export GIT_ACCOUNT=senzing
-    export GIT_REPOSITORY=template-docker
-    export GIT_ACCOUNT_DIR=~/${GIT_ACCOUNT}.git
-    export GIT_REPOSITORY_DIR="${GIT_ACCOUNT_DIR}/${GIT_REPOSITORY}"
-    ```
-
-1. Using the environment variables values just set, follow steps in [clone-repository](https://github.com/Senzing/knowledge-base/blob/main/HOWTO/clone-repository.md) to install the Git repository.
-
-### Build Docker image
-
-1. **Option #1:** Using `docker` command and GitHub.
-
-    ```console
-    sudo docker build \
-      --tag senzing/template \
-      https://github.com/senzing/template-docker.git#main
-    ```
-
-1. **Option #2:** Using `docker` command and local repository.
-
-    ```console
-    cd ${GIT_REPOSITORY_DIR}
-    sudo docker build --tag senzing/template .
-    ```
-
-1. **Option #3:** Using `make` command.
-
-    ```console
-    cd ${GIT_REPOSITORY_DIR}
-    sudo make docker-build
-    ```
-
-    Note: `sudo make docker-build-development-cache` can be used to create cached Docker layers.
-
-## Examples
-
-### Examples of CLI
-
-The following examples require initialization described in
-[Demonstrate using Command Line Interface](#demonstrate-using-command-line-interface).
-
-#### Create reports
-
-1. Create `knowledge-base/lists/docker-versions-latest.sh`
-   Example:
-
-    ```console
-    ~/senzing.git/dockerhub-util/dockerhub-util.py print-latest-versions \
-        > ~/senzing.git/knowledge-base/lists/docker-versions-latest.sh
-    ```
-
-1. Create `knowledge-base/lists/docker-image-names.json`
-   Example:
-
-    ```console
-    ~/senzing.git/dockerhub-util/dockerhub-util.py print-image-names \
-        > ~/senzing.git/knowledge-base/lists/docker-image-names.json
-    ```
-
-1. Create `knowledge-base/lists/docker-active-image-names.txt`
-   Example:
-
-    ```console
-    ~/senzing.git/dockerhub-util/dockerhub-util.py print-active-image-names \
-        > ~/senzing.git/knowledge-base/lists/docker-active-image-names.txt
-    ```
-
-### Examples of Docker
-
-The following examples require initialization described in
-[Demonstrate using Docker](#demonstrate-using-docker).
-
-1. Print contents of `knowledge-base/lists/docker-versions-latest.sh` to terminal.
-   Example:
-
-    ```console
-    sudo docker run \
-      --rm \
-      senzing/dockerhub-util \
-        print-latest-versions
-    ```
-
-## Advanced
-
-### Configuration
+## Configuration
 
 Configuration values specified by environment variable or command line parameter.
 
@@ -297,10 +177,11 @@ Configuration values specified by environment variable or command line parameter
 - **[SENZING_SLEEP_TIME_IN_SECONDS](https://github.com/Senzing/knowledge-base/blob/main/lists/environment-variables.md#senzing_sleep_time_in_seconds)**
 - **[SENZING_SUBCOMMAND](https://github.com/Senzing/knowledge-base/blob/main/lists/environment-variables.md#senzing_subcommand)**
 
-## Errors
-
-1. See [docs/errors.md](docs/errors.md).
-
 ## References
 
 1. [Bitnami's Best Practices for Securing and Hardening Container Images](https://docs.bitnami.com/tutorials/bitnami-best-practices-hardening-containers)
+1. [Development](docs/development.md)
+1. [Errors](docs/errors.md)
+1. [Examples](docs/examples.md)
+1. Related artifacts:
+    1. [DockerHub](https://hub.docker.com/r/senzing/dockerhub-util)
