@@ -26,9 +26,9 @@ from packaging.version import Version
 # Metadata
 
 __all__ = []
-__version__ = "1.2.3"  # See https://www.python.org/dev/peps/pep-0396/
+__version__ = "1.2.4"  # See https://www.python.org/dev/peps/pep-0396/
 __date__ = '2021-02-22'
-__updated__ = '2023-04-04'
+__updated__ = '2023-06-30'
 
 SENZING_PRODUCT_ID = "5018"  # See https://github.com/Senzing/knowledge-base/blob/main/lists/senzing-product-ids.md
 LOG_FORMAT = '%(asctime)s %(message)s'
@@ -230,22 +230,22 @@ DOCKERHUB_REPOSITORIES_FOR_LATEST = {
     'x-bitnami-shell': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_BITNAMI_SHELL',
         'image': 'bitnami/bitnami-shell',
-        'version': '11-debian-11-r103'
+        'version': '11-debian-11-r131'
     },
     'x-busybox': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_BUSYBOX',
         'image': 'busybox',
-        'version': '1.35.0'
+        'version': '1.36.1'
     },
     'x-confluentinc-cp-kafka': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_CONFLUENTINC_CP_KAFKA',
         'image': 'confluentinc/cp-kafka',
-        'version': '7.3.3'
+        'version': '7.4.0'
     },
     'x-elasticsearch': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_ELASTICSEARCH',
         'image': 'elasticsearch',
-        'version': '8.6.2'
+        'version': '8.8.1'
     },
     'x-ibmcom-db2': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_IBMCOM_DB2',
@@ -260,17 +260,17 @@ DOCKERHUB_REPOSITORIES_FOR_LATEST = {
     'x-kafka': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_BITNAMI_KAFKA',
         'image': 'bitnami/kafka',
-        'version': '3.4.0-debian-11-r16'
+        'version': '3.5.0-debian-11-r1'
     },
     'x-kibana': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_KIBANA',
         'image': 'kibana',
-        'version': '8.6.2'
+        'version': '8.8.1'
     },
     'x-logstash': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_LOGSTASH',
         'image': 'logstash',
-        'version': '8.6.2'
+        'version': '8.8.1'
     },
     'x-mssql': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_MSSQL_SERVER',
@@ -292,7 +292,7 @@ DOCKERHUB_REPOSITORIES_FOR_LATEST = {
     'x-mysql-deprecated': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_MYSQL',
         'image': 'bitnami/mysql',
-        'version': '8.0.32-debian-11-r22'
+        'version': '8.0.33-debian-11-r25'
     },
     'x-mysql-client': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_AREY_MYSQL_CLIENT',
@@ -302,22 +302,22 @@ DOCKERHUB_REPOSITORIES_FOR_LATEST = {
     'x-nginx': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_BITNAMI_NGINX',
         'image': 'bitnami/nginx',
-        'version': '1.23.4-debian-11-r2'
+        'version': '1.24.0-debian-11-r23'
     },
     'x-nginx-ingress-controller': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_BITNAMI_NGINX_INGRESS_CONTROLLER',
         'image': 'bitnami/nginx-ingress-controller',
-        'version': '1.7.0-debian-11-r3'
+        'version': '1.8.0-debian-11-r10'
     },
     'x-pgadmin': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_DPAGE_PGADMIN4',
         'image': 'dpage/pgadmin4',
-        'version': '6.21'
+        'version': '7.4'
     },
     'x-phpmyadmin': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_BITNAMI_PHPMYADMIN',
         'image': 'bitnami/phpmyadmin',
-        'version': '5.2.1-debian-11-r16'
+        'version': '5.2.1-debian-11-r44'
     },
     'x-phppgadmin': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_BITNAMI_PHPPGADMIN',
@@ -332,7 +332,7 @@ DOCKERHUB_REPOSITORIES_FOR_LATEST = {
     'x-portainer-ce': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_PORTAINER_CE',
         'image': 'portainer/portainer-ce',
-        'version': '2.17.1'
+        'version': '2.18.3'
     },
     'x-postgres': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_BITNAMI_POSTGRESQL',
@@ -342,7 +342,7 @@ DOCKERHUB_REPOSITORIES_FOR_LATEST = {
     'x-rabbitmq': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_BITNAMI_RABBITMQ',
         'image': 'bitnami/rabbitmq',
-        'version': '3.11.13-debian-11-r1'
+        'version': '3.12.1-debian-11-r1'
     },
     'x-sqlite-web': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_SQLITE_WEB',
@@ -352,12 +352,12 @@ DOCKERHUB_REPOSITORIES_FOR_LATEST = {
     'x-swagger-ui': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_SWAGGERAPI_SWAGGER_UI',
         'image': 'swaggerapi/swagger-ui',
-        'version': 'v4.18.2'
+        'version': 'v5.1.0'
     },
     'x-zookeeper': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_BITNAMI_ZOOKEEPER',
         'image': 'bitnami/zookeeper',
-        'version': '3.8.1-debian-11-r18'
+        'version': '3.8.1-debian-11-r49'
     }
 }
 # -----------------------------------------------------------------------------
