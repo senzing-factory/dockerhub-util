@@ -149,6 +149,9 @@ DOCKERHUB_REPOSITORIES_FOR_LATEST = {
     'init-container': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_INIT_CONTAINER',
     },
+    'init-database': {
+        'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_INIT_DATABASE',
+    },
     'init-postgresql': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_INIT_POSTGRESQL',
     },
@@ -202,6 +205,12 @@ DOCKERHUB_REPOSITORIES_FOR_LATEST = {
     },
     'senzingapi-tools': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_SENZINGAPI_TOOLS',
+    },
+    'serve-chat': {
+        'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_SERVE_CHAT',
+    },
+    'serve-grpc': {
+        'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_SERVE_GRPC',
     },
     'sshd': {
         'environment_variable': 'SENZING_DOCKER_IMAGE_VERSION_SSHD',
