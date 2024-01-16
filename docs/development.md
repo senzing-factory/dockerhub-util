@@ -20,8 +20,8 @@ see [Environment Variables](https://github.com/Senzing/knowledge-base/blob/main/
 1. Set these environment variable values:
 
     ```console
-    export GIT_ACCOUNT=senzing
-    export GIT_REPOSITORY=template-docker
+    export GIT_ACCOUNT=senzing-factory
+    export GIT_REPOSITORY=dockerhub-util
     export GIT_ACCOUNT_DIR=~/${GIT_ACCOUNT}.git
     export GIT_REPOSITORY_DIR="${GIT_ACCOUNT_DIR}/${GIT_REPOSITORY}"
     ```

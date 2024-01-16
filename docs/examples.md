@@ -11,24 +11,24 @@ The following examples require initialization described in
    Example:
 
     ```console
-    ~/senzing.git/dockerhub-util/dockerhub-util.py print-latest-versions \
-        > ~/senzing.git/knowledge-base/lists/docker-versions-latest.sh
+    ~/senzing-factory.git/dockerhub-util/dockerhub-util.py print-latest-versions \
+        > ~/senzing-garage.git/knowledge-base/lists/docker-versions-latest.sh
     ```
 
 1. Create `knowledge-base/lists/docker-image-names.json`
    Example:
 
     ```console
-    ~/senzing.git/dockerhub-util/dockerhub-util.py print-image-names \
-        > ~/senzing.git/knowledge-base/lists/docker-image-names.json
+    ~/senzing-factory.git/dockerhub-util/dockerhub-util.py print-image-names \
+        > ~/senzing-garage.git/knowledge-base/lists/docker-image-names.json
     ```
 
 1. Create `knowledge-base/lists/docker-active-image-names.txt`
    Example:
 
     ```console
-    ~/senzing.git/dockerhub-util/dockerhub-util.py print-active-image-names \
-        > ~/senzing.git/knowledge-base/lists/docker-active-image-names.txt
+    ~/senzing-factory.git/dockerhub-util/dockerhub-util.py print-active-image-names \
+        > ~/senzing-garage.git/knowledge-base/lists/docker-active-image-names.txt
     ```
 
 ## Examples of Docker
