@@ -6,6 +6,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 [markdownlint](https://dlaa.me/markdownlint/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.6] - 2024-01-16
+
+### Changed in 1.2.6
+
+- Update non-Senzing docker versions
+- Migrated from `senzing` to `senzing-factory` GitHub Repository
+- In `requirements.txt`, updated:
+  - packaging==23.2
+
 ## [1.2.5] - 2023-09-30
 
 ### Changed in 1.2.5
