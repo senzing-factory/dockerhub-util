@@ -3,7 +3,7 @@
 ## Examples of CLI
 
 The following examples require initialization described in
-[Demonstrate using Command Line Interface](../README.md#demonstrate-using-command-line-interface).
+[Demonstrate using command-line interface](../README.md#demonstrate-using-command-line-interface).
 
 ### Create reports
 
