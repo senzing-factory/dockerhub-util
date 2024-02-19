@@ -17,7 +17,7 @@ USER root
 # Install packages via apt.
 
 RUN apt-get update \
-  && apt-get -y install \
+  && apt-get -y install --no-install-recommends \
   python3-dev \
   python3-pip \
   && rm -rf /var/lib/apt/lists/*
