@@ -8,27 +8,6 @@ on:
 
 jobs:
   lint-code-base:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: ["3.8", "3.9", "3.10"]
-
-    steps:
-      - name: checkout repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v5
-        with:
-          python-version: ${{ matrix.python-version }}
-
-      - name: Lint Code Base
-        uses: github/super-linter@v5
-        env:
-          ACTIONS_RUNNER_DEBUG: true
-          DEFAULT_BRANCH: main
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # only lint new and modified files
-          VALIDATE_ALL_CODEBASE: true
+    uses: senzing-factory/build-resources/.github/workflows/linter.yaml@v1
+    with:
+      validate-all-codebase: true
