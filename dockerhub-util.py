@@ -963,7 +963,8 @@ def do_print_latest_versions(subcommand, args):
     print("#!/usr/bin/env bash")
     print("")
     print(
-        "# Generated on {0} by https://github.com/Senzing/dockerhub-util dockerhub-util.py version: {1} update: {2}".format(
+        "# Generated on {0} by https://github.com/Senzing/dockerhub-util " \
+          "dockerhub-util.py version: {1} update: {2}".format(
             date.today(), config.get("program_version"), config.get("program_updated")
         )
     )
