@@ -27,6 +27,7 @@ jobs:
       - name: Lint Code Base
         uses: github/super-linter@v5
         env:
+          ACTIONS_RUNNER_DEBUG: true
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           # only lint new and modified files
