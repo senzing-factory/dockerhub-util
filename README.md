@@ -38,7 +38,7 @@ optional arguments:
 1. [Preamble](#preamble)
     1. [Legend](#legend)
 1. [Expectations](#expectations)
-1. [Demonstrate using Command Line Interface](#demonstrate-using-command-line-interface)
+1. [Demonstrate using command-line interface](#demonstrate-using-command-line-interface)
     1. [Prerequisites for CLI](#prerequisites-for-cli)
     1. [Download](#download)
     1. [Run command](#run-command)
@@ -75,7 +75,7 @@ describing where we can improve.   Now on with the show...
 - **Background knowledge:** This repository assumes a working knowledge of:
   - [Docker](https://github.com/Senzing/knowledge-base/blob/main/WHATIS/docker.md)
 
-## Demonstrate using Command Line Interface
+## Demonstrate using command-line interface
 
 ### Prerequisites for CLI
 
@@ -166,7 +166,7 @@ Unset `*_PARAMETER` environment variables have no effect on the
 
 ## Configuration
 
-Configuration values specified by environment variable or command line parameter.
+Configuration values specified by environment variable or command-line parameter.
 
 - **[SENZING_DEBUG](https://github.com/Senzing/knowledge-base/blob/main/lists/environment-variables.md#senzing_debug)**
 - **[SENZING_DOCKERHUB_API_ENDPOINT_V1](https://github.com/Senzing/knowledge-base/blob/main/lists/environment-variables.md#senzing_dockerhub_api_endpoint_v1)**

@@ -26,7 +26,7 @@ from packaging.version import Version
 
 # Metadata
 
-__all__ = []
+__all__: list[str] = []
 __version__ = "1.2.5"  # See https://www.python.org/dev/peps/pep-0396/
 __date__ = "2021-02-22"
 __updated__ = "2024-01-16"
@@ -963,7 +963,8 @@ def do_print_latest_versions(subcommand, args):
     print("#!/usr/bin/env bash")
     print("")
     print(
-        "# Generated on {0} by https://github.com/Senzing/dockerhub-util dockerhub-util.py version: {1} update: {2}".format(
+        "# Generated on {0} by https://github.com/Senzing/dockerhub-util "
+        "dockerhub-util.py version: {1} update: {2}".format(
             date.today(), config.get("program_version"), config.get("program_updated")
         )
     )
@@ -1046,7 +1047,7 @@ if __name__ == "__main__":
 
     # Parse the command line arguments.
 
-    SUBCOMMAND = os.getenv("SENZING_SUBCOMMAND", None)
+    SUBCOMMAND = os.getenv("SENZING_SUBCOMMAND", "value does not exist")
     PARSER = get_parser()
     if len(sys.argv) > 1:
         ARGS = PARSER.parse_args()
