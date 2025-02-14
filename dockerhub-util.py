@@ -101,17 +101,14 @@ DOCKERHUB_REPOSITORIES_FOR_LATEST = {
     "aptdownloader": {
         "environment_variable": "SENZING_DOCKER_IMAGE_VERSION_APT_DOWNLOADER",
     },
-    "configurator": {
-        "environment_variable": "SENZING_DOCKER_IMAGE_VERSION_CONFIGURATOR",
+    "aptdownloader-staging": {
+        "environment_variable": "SENZING_DOCKER_IMAGE_VERSION_APT_DOWNLOADER_STAGING",
+    },
+    "apt-staging": {
+        "environment_variable": "SENZING_DOCKER_IMAGE_VERSION_APT_STAGING",
     },
     "data-encryption-aes256cbc-sample": {
         "environment_variable": "SENZING_DOCKER_IMAGE_VERSION_DATA_ENCRYPTION_AES256CBC_SAMPLE",
-    },
-    "db2-driver-installer": {
-        "environment_variable": "SENZING_DOCKER_IMAGE_VERSION_DB2_DRIVER_INSTALLER",
-    },
-    "docker-compose-air-gapper": {
-        "environment_variable": "SENZING_DOCKER_IMAGE_VERSION_DOCKER_COMPOSE_AIR_GAPPER",
     },
     "dockerhub-util": {
         "environment_variable": "SENZING_DOCKER_IMAGE_VERSION_DOCKERHUB_UTIL",
@@ -119,23 +116,8 @@ DOCKERHUB_REPOSITORIES_FOR_LATEST = {
     "entity-search-web-app": {
         "environment_variable": "SENZING_DOCKER_IMAGE_VERSION_ENTITY_SEARCH_WEB_APP",
     },
-    "entity-search-web-app-console": {
-        "environment_variable": "SENZING_DOCKER_IMAGE_VERSION_ENTITY_SEARCH_WEB_APP_CONSOLE",
-    },
     "file-loader": {
         "environment_variable": "SENZING_DOCKER_IMAGE_VERSION_FILE_LOADER",
-    },
-    "g2command": {
-        "environment_variable": "SENZING_DOCKER_IMAGE_VERSION_G2COMMAND",
-    },
-    "g2configtool": {
-        "environment_variable": "SENZING_DOCKER_IMAGE_VERSION_G2CONFIGTOOL",
-    },
-    "g2loader": {
-        "environment_variable": "SENZING_DOCKER_IMAGE_VERSION_G2LOADER",
-    },
-    "ibm-db2": {
-        "environment_variable": "SENZING_DOCKER_IMAGE_VERSION_IBM_DB2",
     },
     "init-container": {
         "environment_variable": "SENZING_DOCKER_IMAGE_VERSION_INIT_CONTAINER",
@@ -143,14 +125,11 @@ DOCKERHUB_REPOSITORIES_FOR_LATEST = {
     "init-database": {
         "environment_variable": "SENZING_DOCKER_IMAGE_VERSION_INIT_DATABASE",
     },
-    "init-postgresql": {
-        "environment_variable": "SENZING_DOCKER_IMAGE_VERSION_INIT_POSTGRESQL",
-    },
     "init-mysql": {
         "environment_variable": "SENZING_DOCKER_IMAGE_VERSION_INIT_MYSQL",
     },
-    "jupyter": {
-        "environment_variable": "SENZING_DOCKER_IMAGE_VERSION_JUPYTER",
+    "init-postgresql": {
+        "environment_variable": "SENZING_DOCKER_IMAGE_VERSION_INIT_POSTGRESQL",
     },
     "phppgadmin": {
         "environment_variable": "SENZING_DOCKER_IMAGE_VERSION_PHPPGADMIN",
@@ -158,32 +137,17 @@ DOCKERHUB_REPOSITORIES_FOR_LATEST = {
     "postgresql-client": {
         "environment_variable": "SENZING_DOCKER_IMAGE_VERSION_POSTGRESQL_CLIENT",
     },
-    "python-demo": {
-        "environment_variable": "SENZING_DOCKER_IMAGE_VERSION_PYTHON_DEMO",
-    },
-    "redoer": {
-        "environment_variable": "SENZING_DOCKER_IMAGE_VERSION_REDOER",
-    },
     "resolver": {
         "environment_variable": "SENZING_DOCKER_IMAGE_VERSION_RESOLVER",
     },
-    "risk-score-calculator": {
-        "environment_variable": "SENZING_DOCKER_IMAGE_VERSION_RISK_SCORE_CALCULATOR",
-    },
     "senzing-api-server": {
         "environment_variable": "SENZING_DOCKER_IMAGE_VERSION_SENZING_API_SERVER",
-    },
-    "senzing-base": {
-        "environment_variable": "SENZING_DOCKER_IMAGE_VERSION_SENZING_BASE",
     },
     "senzing-console": {
         "environment_variable": "SENZING_DOCKER_IMAGE_VERSION_SENZING_CONSOLE",
     },
     "senzing-console-slim": {
         "environment_variable": "SENZING_DOCKER_IMAGE_VERSION_SENZING_CONSOLE_SLIM",
-    },
-    "senzing-listener": {
-        "environment_variable": "SENZING_DOCKER_IMAGE_VERSION_SENZING_LISTENER",
     },
     "senzing-poc-server": {
         "environment_variable": "SENZING_DOCKER_IMAGE_VERSION_SENZING_POC_SERVER",
@@ -197,20 +161,17 @@ DOCKERHUB_REPOSITORIES_FOR_LATEST = {
     "senzingapi-tools": {
         "environment_variable": "SENZING_DOCKER_IMAGE_VERSION_SENZINGAPI_TOOLS",
     },
-    "serve-chat": {
-        "environment_variable": "SENZING_DOCKER_IMAGE_VERSION_SERVE_CHAT",
+    "senzingsdk-runtime": {
+        "environment_variable": "SENZING_DOCKER_IMAGE_VERSION_SENZINGSDK_RUNTIME",
+    },
+    "senzingsdk-tools": {
+        "environment_variable": "SENZING_DOCKER_IMAGE_VERSION_SENZINGSDK_TOOLS",
     },
     "serve-grpc": {
         "environment_variable": "SENZING_DOCKER_IMAGE_VERSION_SERVE_GRPC",
     },
     "sshd": {
         "environment_variable": "SENZING_DOCKER_IMAGE_VERSION_SSHD",
-    },
-    "stream-loader": {
-        "environment_variable": "SENZING_DOCKER_IMAGE_VERSION_STREAM_LOADER",
-    },
-    "stream-logger": {
-        "environment_variable": "SENZING_DOCKER_IMAGE_VERSION_STREAM_LOGGER",
     },
     "stream-producer": {
         "environment_variable": "SENZING_DOCKER_IMAGE_VERSION_STREAM_PRODUCER",
@@ -230,22 +191,22 @@ DOCKERHUB_REPOSITORIES_FOR_LATEST = {
     "x-bitnami-shell": {
         "environment_variable": "SENZING_DOCKER_IMAGE_VERSION_BITNAMI_SHELL",
         "image": "bitnami/bitnami-shell",
-        "version": "11-debian-11-r136",
+        "version": "11-debian-11",
     },
     "x-busybox": {
         "environment_variable": "SENZING_DOCKER_IMAGE_VERSION_BUSYBOX",
         "image": "busybox",
-        "version": "1.36.1",
+        "version": "1.37.0",
     },
     "x-confluentinc-cp-kafka": {
         "environment_variable": "SENZING_DOCKER_IMAGE_VERSION_CONFLUENTINC_CP_KAFKA",
         "image": "confluentinc/cp-kafka",
-        "version": "7.5.3",
+        "version": "7.8.1",
     },
     "x-elasticsearch": {
         "environment_variable": "SENZING_DOCKER_IMAGE_VERSION_ELASTICSEARCH",
         "image": "elasticsearch",
-        "version": "8.11.3",
+        "version": "8.17.2",
     },
     "x-ibmcom-db2": {
         "environment_variable": "SENZING_DOCKER_IMAGE_VERSION_IBMCOM_DB2",
@@ -255,12 +216,12 @@ DOCKERHUB_REPOSITORIES_FOR_LATEST = {
     "x-kafdrop": {
         "environment_variable": "SENZING_DOCKER_IMAGE_VERSION_OBSIDIANDYNAMICS_KAFDROP",
         "image": "obsidiandynamics/kafdrop",
-        "version": "4.0.0",
+        "version": "4.1.0",
     },
     "x-kafka": {
         "environment_variable": "SENZING_DOCKER_IMAGE_VERSION_BITNAMI_KAFKA",
         "image": "bitnami/kafka",
-        "version": "3.5.2-debian-11-r1",
+        "version": "3.9.0",
     },
     "x-kibana": {
         "environment_variable": "SENZING_DOCKER_IMAGE_VERSION_KIBANA",
@@ -270,13 +231,13 @@ DOCKERHUB_REPOSITORIES_FOR_LATEST = {
     "x-logstash": {
         "environment_variable": "SENZING_DOCKER_IMAGE_VERSION_LOGSTASH",
         "image": "logstash",
-        "version": "8.11.3",
+        "version": "8.17.2",
     },
     "x-mssql": {
         "environment_variable": "SENZING_DOCKER_IMAGE_VERSION_MSSQL_SERVER",
         "image": "mcr.microsoft.com/mssql/server",
         "url-versions": "https://mcr.microsoft.com/v2/mssql/server/tags/list",
-        "version": "2019-GA-ubuntu-16.04",
+        "version": "latest",
     },
     "x-mssql-tools": {
         "environment_variable": "SENZING_DOCKER_IMAGE_VERSION_MSSQL_TOOLS",
@@ -287,7 +248,7 @@ DOCKERHUB_REPOSITORIES_FOR_LATEST = {
     "x-mysql": {
         "environment_variable": "SENZING_DOCKER_IMAGE_VERSION_BITNAMI_MYSQL",
         "image": "bitnami/mysql",
-        "version": "8.2.0-debian-11-r4",
+        "version": "8.4.4",
     },
     "x-mysql-deprecated": {
         "environment_variable": "SENZING_DOCKER_IMAGE_VERSION_MYSQL",
@@ -302,22 +263,22 @@ DOCKERHUB_REPOSITORIES_FOR_LATEST = {
     "x-nginx": {
         "environment_variable": "SENZING_DOCKER_IMAGE_VERSION_BITNAMI_NGINX",
         "image": "bitnami/nginx",
-        "version": "1.25.3-debian-11-r4",
+        "version": "1.27.4",
     },
     "x-nginx-ingress-controller": {
         "environment_variable": "SENZING_DOCKER_IMAGE_VERSION_BITNAMI_NGINX_INGRESS_CONTROLLER",
         "image": "bitnami/nginx-ingress-controller",
-        "version": "1.9.1-debian-11-r0",
+        "version": "1.12.0",
     },
     "x-pgadmin": {
         "environment_variable": "SENZING_DOCKER_IMAGE_VERSION_DPAGE_PGADMIN4",
         "image": "dpage/pgadmin4",
-        "version": "8.2",
+        "version": "9.0.0",
     },
     "x-phpmyadmin": {
         "environment_variable": "SENZING_DOCKER_IMAGE_VERSION_BITNAMI_PHPMYADMIN",
         "image": "bitnami/phpmyadmin",
-        "version": "5.2.1-debian-11-r128",
+        "version": "5.2.2",
     },
     "x-portainer": {
         "environment_variable": "SENZING_DOCKER_IMAGE_VERSION_PORTAINER",
@@ -327,17 +288,17 @@ DOCKERHUB_REPOSITORIES_FOR_LATEST = {
     "x-portainer-ce": {
         "environment_variable": "SENZING_DOCKER_IMAGE_VERSION_PORTAINER_CE",
         "image": "portainer/portainer-ce",
-        "version": "2.19.4",
+        "version": "2.27.0",
     },
     "x-postgres": {
         "environment_variable": "SENZING_DOCKER_IMAGE_VERSION_BITNAMI_POSTGRESQL",
         "image": "bitnami/postgresql",
-        "version": "16.0.0-debian-11-r10",
+        "version": "17.3.0",
     },
     "x-rabbitmq": {
         "environment_variable": "SENZING_DOCKER_IMAGE_VERSION_BITNAMI_RABBITMQ",
         "image": "bitnami/rabbitmq",
-        "version": "3.12.12-debian-11-r3",
+        "version": "4.0.6",
     },
     "x-sqlite-web": {
         "environment_variable": "SENZING_DOCKER_IMAGE_VERSION_SQLITE_WEB",
@@ -347,12 +308,12 @@ DOCKERHUB_REPOSITORIES_FOR_LATEST = {
     "x-swagger-ui": {
         "environment_variable": "SENZING_DOCKER_IMAGE_VERSION_SWAGGERAPI_SWAGGER_UI",
         "image": "swaggerapi/swagger-ui",
-        "version": "v5.11.0",
+        "version": "v5.18.1",
     },
     "x-zookeeper": {
         "environment_variable": "SENZING_DOCKER_IMAGE_VERSION_BITNAMI_ZOOKEEPER",
         "image": "bitnami/zookeeper",
-        "version": "3.9.1-debian-11-r5",
+        "version": "3.9.3",
     },
 }
 # -----------------------------------------------------------------------------
@@ -528,11 +489,13 @@ def message_debug(index, *args):
 def get_exception():
     """Get details about an exception."""
     exception_type, exception_object, traceback = sys.exc_info()
-    frame = traceback.tb_frame
-    line_number = traceback.tb_lineno
-    filename = frame.f_code.co_filename
-    linecache.checkcache(filename)
-    line = linecache.getline(filename, line_number, frame.f_globals)
+    line = ""
+    if traceback is not None:
+        frame = traceback.tb_frame
+        line_number = traceback.tb_lineno
+        filename = frame.f_code.co_filename
+        linecache.checkcache(filename)
+        line = linecache.getline(filename, line_number, frame.f_globals)
     return {
         "filename": filename,
         "line_number": line_number,
@@ -609,7 +572,8 @@ def get_configuration(subcommand, args):
     integers = ["sleep_time_in_seconds"]
     for integer in integers:
         integer_string = result.get(integer)
-        result[integer] = int(integer_string)
+        if integer_string is not None:
+            result[integer] = int(integer_string)
 
     return result
 
@@ -782,8 +746,7 @@ def max_version(versions):
     result = Version("0.0.0")
     for version in versions:
         version_parsed = Version(version)
-        if version_parsed > result:
-            result = version_parsed
+        result = max(version_parsed, result)
     return result
 
 
@@ -820,7 +783,6 @@ def get_latest_versions(config, dockerhub_repositories):
     result = []
     organization_default = config.get("dockerhub_organization")
     dockerhub_client = DockerHubClient(config)
-
     for key, value in dockerhub_repositories.items():
         organization = value.get("organization", organization_default)
         latest_version = value.get("version")
@@ -830,12 +792,16 @@ def get_latest_versions(config, dockerhub_repositories):
                 organization, repository_name
             )
             response_results = response.get("results")
-            version_tags = [x.get("name") for x in response_results]
-            try:
-                latest_version = find_latest_version(version_tags)
-            except Exception as err:
-                logging.error(message_error(901, repository_name, err))
-                continue
+            if response_results is not None:
+                version_tags = [x.get("name") for x in response_results]
+                try:
+                    latest_version = find_latest_version(version_tags)
+                except Exception as err:
+                    logging.error(message_error(901, repository_name, err))
+                    continue
+            else:
+                print(f"Could not find {key}. Using default: latest", file=sys.stderr)
+                latest_version = "latest"
 
         result.append(
             "export {0}={1}".format(value.get("environment_variable"), latest_version)
@@ -925,7 +891,7 @@ def do_print_active_image_names(subcommand, args):
 
     # Pull variables from config.
 
-    print_format = config.get("print_format")
+    print_format = config.get("print_format", {})
 
     # Do work.
 
@@ -991,7 +957,7 @@ def do_sleep(subcommand, args):
 
     # Pull values from configuration.
 
-    sleep_time_in_seconds = config.get("sleep_time_in_seconds")
+    sleep_time_in_seconds = config.get("sleep_time_in_seconds", 0)
 
     # Sleep.
 

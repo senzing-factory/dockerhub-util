@@ -1,7 +1,5 @@
 [pylint]
 
-callable=
-    request_method
 disable=
     broad-except,
     consider-using-f-string,
