@@ -891,7 +891,7 @@ def do_print_active_image_names(subcommand, args):
 
     # Pull variables from config.
 
-    print_format = config.get("print_format")
+    print_format = config.get("print_format", {})
 
     # Do work.
 
@@ -957,7 +957,7 @@ def do_sleep(subcommand, args):
 
     # Pull values from configuration.
 
-    sleep_time_in_seconds = config.get("sleep_time_in_seconds")
+    sleep_time_in_seconds = config.get("sleep_time_in_seconds", 0)
 
     # Sleep.
 
