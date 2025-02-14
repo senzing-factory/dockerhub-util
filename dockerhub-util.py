@@ -396,7 +396,9 @@ def get_parser():
     parser = argparse.ArgumentParser(
         description="Reports from DockerHub. For more information, see https://github.com/Senzing/dockerhub-util"
     )
-    subparsers = parser.add_subparsers(dest="subcommand", help="Subcommands (SENZING_SUBCOMMAND):")
+    subparsers = parser.add_subparsers(
+        dest="subcommand", help="Subcommands (SENZING_SUBCOMMAND):"
+    )
 
     for subcommand_key, subcommand_values in subcommands.items():
         subcommand_help = subcommand_values.get("help", "")
@@ -453,7 +455,9 @@ MESSAGE_DICTIONARY = {
 def message(index, *args):
     """Return an instantiated message."""
     index_string = str(index)
-    template = MESSAGE_DICTIONARY.get(index_string, "No message for index {0}.".format(index_string))
+    template = MESSAGE_DICTIONARY.get(
+        index_string, "No message for index {0}.".format(index_string)
+    )
     return template.format(*args)
 
 
@@ -656,12 +660,16 @@ class DockerHubClient:
 
     def get_repositories(self, organization):
         """Return a list of repositories."""
-        url = "{0}/repositories/{1}/?page_size=200".format(self.dockerhub_api_endpoint_v2, organization)
+        url = "{0}/repositories/{1}/?page_size=200".format(
+            self.dockerhub_api_endpoint_v2, organization
+        )
         return self.do_request(url)
 
     def get_repository_tags(self, organization, repository_name):
         """Return a list repository tags for a repository."""
-        url = "{0}/repositories/{1}/{2}/tags".format(self.dockerhub_api_endpoint_v2, organization, repository_name)
+        url = "{0}/repositories/{1}/{2}/tags".format(
+            self.dockerhub_api_endpoint_v2, organization, repository_name
+        )
         return self.do_request(url)
 
 
@@ -780,7 +788,9 @@ def get_latest_versions(config, dockerhub_repositories):
         latest_version = value.get("version")
         if not latest_version:
             repository_name = value.get("repository", key)
-            response = dockerhub_client.get_repository_tags(organization, repository_name)
+            response = dockerhub_client.get_repository_tags(
+                organization, repository_name
+            )
             response_results = response.get("results")
             if response_results is not None:
                 version_tags = [x.get("name") for x in response_results]
@@ -793,7 +803,9 @@ def get_latest_versions(config, dockerhub_repositories):
                 print(f"Could not find {key}. Using default: latest", file=sys.stderr)
                 latest_version = "latest"
 
-        result.append("export {0}={1}".format(value.get("environment_variable"), latest_version))
+        result.append(
+            "export {0}={1}".format(value.get("environment_variable"), latest_version)
+        )
 
     result.sort()
     return result
