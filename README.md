@@ -116,8 +116,7 @@ These are "one-time tasks" which may already have been completed.
       chmod +x ${SENZING_DOWNLOAD_FILE}
       ```
 
-1. :thinking: **Alternative:** The entire git repository can be downloaded by following instructions at
-   [Clone repository]
+1. :thinking: **Alternative:** The entire Git repository can be downloaded by following instructions at [Clone repository]
 
 ### Run command
 
@@ -189,7 +188,6 @@ Configuration values specified by environment variable or command-line parameter
 [Demonstrate using Docker]: #demonstrate-using-docker
 [Development]: docs/development.md
 [docker]: https://github.com/Senzing/knowledge-base/blob/main/WHATIS/docker.md
-[Docker]: https://github.com/Senzing/knowledge-base/blob/main/WHATIS/docker.md
 [dockerhub-util.py]: dockerhub-util.py
 [DockerHub]: https://hub.docker.com/r/senzing/dockerhub-util
 [Documentation issue]: https://github.com/Senzing/dockerhub-util/issues/new?template=documentation_request.md
