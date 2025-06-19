@@ -1,1 +1,1 @@
-{ "line-length": false }
+{ "line-length": false } # yamllint disable-line rule:braces
