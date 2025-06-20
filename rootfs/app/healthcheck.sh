@@ -6,6 +6,6 @@ OK=0
 
 # Tests.
 
-echo "Doing healthtest."
+echo "Doing health test."
 
 exit ${OK}

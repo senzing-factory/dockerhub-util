@@ -4,7 +4,7 @@ FROM ${BASE_IMAGE}
 
 ENV REFRESHED_AT=2024-06-24
 
-LABEL name="senzing/dockterhub-util" \
+LABEL name="senzing/dockerhub-util" \
   maintainer="support@senzing.com" \
   version="1.2.8"
 
