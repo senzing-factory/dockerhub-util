@@ -6,8 +6,8 @@
     "alnum",
     "aptdownloader",
     "arey",
-    "Bitnami's",
     "bitnami",
+    "Bitnami's",
     "buildx",
     "CCLA",
     "CODEOWNER",
@@ -38,7 +38,12 @@
     "swaggerapi",
     "szengineflags",
     "toplevel",
+    "venv",
     "yumdownloader"
   ],
-  "ignorePaths": [".git/**", ".gitignore", ".mypy_cache/**"]
+  "ignorePaths": [
+    ".git/**",
+    ".gitignore",
+    ".mypy_cache/**"
+  ]
 }

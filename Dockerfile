@@ -20,7 +20,13 @@ RUN apt-get update \
   && apt-get -y install --no-install-recommends \
   python3-dev \
   python3-pip \
+  python3-venv \
   && rm -rf /var/lib/apt/lists/*
+
+# Create and activate virtual environment.
+
+RUN python3 -m venv /app/venv
+ENV PATH="/app/venv/bin:$PATH"
 
 # Install packages via PIP.
 
