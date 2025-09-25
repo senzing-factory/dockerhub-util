@@ -1,4 +1,4 @@
-ARG BASE_IMAGE=debian:11.11-slim@sha256:6d3c63184632046054ae709964befc943ecffa140adc697ca955a10002a79c08
+ARG BASE_IMAGE=debian:13.1-slim@sha256:c2880112cc5c61e1200c26f106e4123627b49726375eb5846313da9cca117337
 # hadolint ignore=DL3006
 FROM ${BASE_IMAGE}
 
@@ -20,7 +20,13 @@ RUN apt-get update \
   && apt-get -y install --no-install-recommends \
   python3-dev \
   python3-pip \
+  python3-venv \
   && rm -rf /var/lib/apt/lists/*
+
+# Create and activate virtual environment.
+
+RUN python3 -m venv /app/venv
+ENV PATH="/app/venv/bin:$PATH"
 
 # Install packages via PIP.
 
