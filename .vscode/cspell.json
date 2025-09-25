@@ -41,9 +41,5 @@
     "venv",
     "yumdownloader"
   ],
-  "ignorePaths": [
-    ".git/**",
-    ".gitignore",
-    ".mypy_cache/**"
-  ]
+  "ignorePaths": [".git/**", ".gitignore", ".mypy_cache/**"]
 }
