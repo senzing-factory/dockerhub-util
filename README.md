@@ -92,6 +92,7 @@ These are "one-time tasks" which may already have been completed.
 
 1. Get a local copy of [template-python.py].
    Example:
+
    1. :pencil2: Specify where to download file.
       Example:
 
@@ -136,7 +137,7 @@ These are "one-time tasks" which may already have been completed.
 These are "one-time tasks" which may already have been completed.
 
 1. The following software programs need to be installed:
-   1. [docker]
+   1. [Docker]
 
 ### Run Docker container
 
@@ -186,7 +187,7 @@ Configuration values specified by environment variable or command-line parameter
 [Demonstrate using command-line interface]: #demonstrate-using-command-line-interface
 [Demonstrate using Docker]: #demonstrate-using-docker
 [Development]: docs/development.md
-[docker]: https://github.com/Senzing/knowledge-base/blob/main/WHATIS/docker.md
+[Docker]: https://github.com/Senzing/knowledge-base/blob/main/WHATIS/docker.md
 [dockerhub-util.py]: dockerhub-util.py
 [DockerHub]: https://hub.docker.com/r/senzing/dockerhub-util
 [Documentation issue]: https://github.com/Senzing/dockerhub-util/issues/new?template=documentation_request.md
