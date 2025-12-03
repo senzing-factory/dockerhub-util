@@ -92,7 +92,6 @@ These are "one-time tasks" which may already have been completed.
 
 1. Get a local copy of [template-python.py].
    Example:
-
    1. :pencil2: Specify where to download file.
       Example:
 
