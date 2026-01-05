@@ -2,7 +2,7 @@ ARG BASE_IMAGE=debian:13.2-slim@sha256:4bcb9db66237237d03b55b969271728dd3d955eaa
 # hadolint ignore=DL3006
 FROM ${BASE_IMAGE}
 
-ENV REFRESHED_AT=2024-06-24
+ENV REFRESHED_AT=2026-01-05
 
 LABEL name="senzing/dockerhub-util" \
   maintainer="support@senzing.com" \
