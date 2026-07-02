@@ -1,3 +1,9 @@
+# Makefile for dockerhub-util
+
+# Detect the operating system, architecture, and container runtime.
+
+include makefiles/osdetect.mk
+
 # Git variables
 
 GIT_REPOSITORY_NAME := $(shell basename `git rev-parse --show-toplevel`)
@@ -19,16 +25,12 @@ default: help
 # Docker-based builds
 # -----------------------------------------------------------------------------
 
-.PHONY: docker-build
+$(eval $(call container_build_target,docker-build,,$(GIT_VERSION)))
 docker-build: docker-rmi-for-build
-	docker build \
-		--tag $(DOCKER_IMAGE_NAME) \
-		--tag $(DOCKER_IMAGE_NAME):$(GIT_VERSION) \
-		.
 
 .PHONY: docker-build-development-cache
 docker-build-development-cache: docker-rmi-for-build-development-cache
-	docker build \
+	$(CONTAINER_RUNTIME) build \
 		--tag $(DOCKER_IMAGE_TAG) \
 		.
 
@@ -38,13 +40,13 @@ docker-build-development-cache: docker-rmi-for-build-development-cache
 
 .PHONY: docker-rmi-for-build
 docker-rmi-for-build:
-	-docker rmi --force \
+	-$(CONTAINER_RMI) \
 		$(DOCKER_IMAGE_NAME):$(GIT_VERSION) \
 		$(DOCKER_IMAGE_NAME)
 
 .PHONY: docker-rmi-for-build-development-cache
 docker-rmi-for-build-development-cache:
-	-docker rmi --force $(DOCKER_IMAGE_TAG)
+	-$(CONTAINER_RMI) $(DOCKER_IMAGE_TAG)
 
 .PHONY: clean
 clean: docker-rmi-for-build docker-rmi-for-build-development-cache
